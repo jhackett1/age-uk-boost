@@ -1,0 +1,20 @@
+<h1>Services</h1>
+
+<%= link_to "Add a service", new_organiser_service_path %>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Ordered</th>
+        <tr/>
+    </thead>
+    <tbody>
+        <% @services.each do |s| %>
+            <tr>
+                <td><%= link_to s.name, organiser_service_path(s) %></td>
+                <td><%= s.orders.count %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

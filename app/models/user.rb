@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :tasks, class_name: "Order"
   belongs_to :role
+
+  def display_name
+    first_name + " " + last_name
+  end
 end

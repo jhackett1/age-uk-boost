@@ -10,6 +10,28 @@
   </head>
 
   <body>
+
+    <% if current_user.present? %>
+      <%= link_to current_user.display_name, edit_user_registration_path %>
+      <strong><%= link_to "Log out", destroy_user_session_path, method: "delete" %></strong>
+    <% else %>
+      <%= link_to "Log in", user_session_path %>
+    <% end %>
+    <hr/>
+
+    <% if current_user && current_user.role.name === "organiser" %>
+      <nav>
+        <ul>
+          <li><%= link_to "Dashboard", organiser_root_path %></li>
+          <li><%= link_to "Clients", organiser_clients_path %></li>
+          <li><%= link_to "Orders", organiser_orders_path %></li>
+          <li><%= link_to "Services", organiser_services_path %></li>
+          <li><%= link_to "Users", organiser_users_path %></li>
+        </ul>
+      </nav>
+      <hr/>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,20 @@
+<h1>Users</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Joined</th>
+        <tr/>
+    </thead>
+    <tbody>
+        <% @users.each do |u| %>
+            <tr>
+                <td><%= u.display_name %></td>
+                <td><%= u.email %></td>
+                <td><%= time_ago_in_words(u.created_at).humanize %> ago</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
