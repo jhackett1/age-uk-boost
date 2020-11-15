@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: MyString
+  due: 2020-11-15
+  urgent: false
+  user: one
+
+two:
+  kind: MyString
+  due: 2020-11-15
+  urgent: false
+  user: two
