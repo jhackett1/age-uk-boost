@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+const initMap = () => {
     const map = L.map('map').setView([51.505, -0.09], 13)
     const bounds = L.latLngBounds()
 
@@ -19,4 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     map.fitBounds(bounds)
-})
+}
+
+document.addEventListener("DOMContentLoaded", initMap)
+document.addEventListener("turbolinks:load", initMap)

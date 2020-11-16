@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -16,7 +15,7 @@ class User < ApplicationRecord
 
   validate :postal_code_is_valid
 
-  geocoded_by :postcode
+  geocoded_by :whole_address
   
   after_validation :geocode
 
@@ -29,6 +28,10 @@ class User < ApplicationRecord
 
   def display_name
     first_name + " " + last_name
+  end
+
+  def whole_address
+    [address, postcode, "UK"].compact.join(', ')
   end
 
   def rough_distance
