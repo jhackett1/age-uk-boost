@@ -1,0 +1,26 @@
+<h1>Receipts</h1>
+
+<%= link_to "Add a receipt", new_organiser_receipt_path %>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Related orders</th>
+            <th scope="col">From</th>
+            <th scope="col">Total (£)</th>
+            <th scope="col">Made</th>
+        <tr/>
+    </thead>
+    <tbody>
+        <% @receipts.each do |o| %>
+            <tr>
+                <td><%= o.orders.map{ |s| s.name }.join(", ") %></td>
+                <td><%= o.price %></td>                
+                <td><%= link_to o.user.display_name, organiser_user_path(o.user) %></td>
+                <td><%= time_ago_in_words(o.created_at).humanize %> ago</td>
+
+                <td><%= link_to "Edit", organiser_receipt_path(o) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

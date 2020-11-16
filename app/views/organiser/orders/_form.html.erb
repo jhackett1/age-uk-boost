@@ -1,0 +1,30 @@
+<%= form_for [:organiser, @order] do |f| %>
+    <%= render "shared/errors", model: @order %>
+
+    <%= f.label :approved %>
+    <br/>
+    <%= f.check_box :approved %>
+    <br/>
+
+    <%= f.label :urgent %>
+    <br/>
+    <%= f.check_box :urgent %>
+    <br/>
+
+    <%= f.label :client_id %>
+    <br/>
+    <%= f.collection_select :client_id, Client.all, :id, :name %>
+    <br/>
+
+    <%= f.label :user_id %>
+    <br/>
+    <%= f.collection_select :user_id, User.all, :id, :display_name %>
+    <br/>
+
+    <%= f.label :service_ids %>
+    <br/>
+    <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
+    <br/>
+
+    <%= f.submit %>
+<% end %>

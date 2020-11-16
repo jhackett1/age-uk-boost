@@ -19,18 +19,27 @@
     <% end %>
     <hr/>
 
-    <% if current_user && current_user.role.name === "organiser" %>
+    <% if current_user %>
       <nav>
         <ul>
-          <li><%= link_to "Dashboard", organiser_root_path %></li>
-          <li><%= link_to "Clients", organiser_clients_path %></li>
-          <li><%= link_to "Orders", organiser_orders_path %></li>
-          <li><%= link_to "Services", organiser_services_path %></li>
-          <li><%= link_to "Users", organiser_users_path %></li>
+          <% if current_user.role.name === "organiser" %>
+            <li><%= link_to "Dashboard", organiser_root_path %></li>
+            <li><%= link_to "Orders", organiser_orders_path %></li>
+            <li><%= link_to "Services", organiser_services_path %></li>
+            <li><%= link_to "Users", organiser_users_path %></li>
+            <li><%= link_to "Receipts", organiser_receipts_path %></li>
+          <% elsif current_user.role.name === "volunteer"  %>
+            <li><%= link_to "Planner", volunteer_root_path %></li>
+            <li><%= link_to "Tasks", volunteer_tasks_path %></li>
+            <li><%= link_to "Receipts", volunteer_receipts_path %></li>
+          <% end %>
         </ul>
       </nav>
       <hr/>
     <% end %>
+
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
 
     <%= yield %>
   </body>

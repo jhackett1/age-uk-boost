@@ -1,0 +1,25 @@
+<%= form_for [:organiser, @user] do |f| %>
+    <%= render "shared/errors", model: @user %>
+
+    <%= f.label :first_name %>
+    <br/>
+    <%= f.text_field :first_name %>
+    <br/>
+
+    <%= f.label :last_name %>
+    <br/>
+    <%= f.text_field :last_name %>
+    <br/>
+
+    <%= f.label :email %>
+    <br/>
+    <%= f.text_field :email %>
+    <br/>
+
+    <%= f.label :role_id %>
+    <br/>
+    <%= f.collection_select :role_id, Role.all, :id, :name %>
+    <br/>
+
+    <%= f.submit %>
+<% end %>

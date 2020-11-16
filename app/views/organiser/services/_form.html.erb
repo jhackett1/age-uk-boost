@@ -4,5 +4,8 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
 
+    <%= f.label :price %>
+    <%= f.number_field :price, min: 0, step: 0.01 %>
+
     <%= f.submit %>
 <% end %>

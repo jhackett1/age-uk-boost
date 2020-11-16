@@ -1,0 +1,31 @@
+<h1>Orders</h1>
+
+<%= link_to "Add an order", new_organiser_order_path %>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Services</th>
+            <th scope="col">Client</th>
+            <th scope="col">Urgent</th>
+            <th scope="col">Approved</th>
+            <th scope="col">Made</th>
+            <th scope="col">Assigned to</th>
+
+        <tr/>
+    </thead>
+    <tbody>
+        <% @orders.each do |o| %>
+            <tr>
+                <td><%= o.services.map{ |s| s.name }.join(", ") %></td>
+                <td><%= link_to o.client.name, organiser_client_path(o.client) %></td>
+                <td><%= o.urgent %></td>
+                <td><%= o.approved %></td>
+                <td><%= link_to o.user.display_name, organiser_user_path(o.user) %></td>
+                <td><%= time_ago_in_words(o.created_at).humanize %> ago</td>
+
+                <td><%= link_to "Edit", organiser_order_path(o) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

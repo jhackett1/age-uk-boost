@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th scope="col">Name</th>
+            <th scope="col">Price (£)</th>
             <th scope="col">Ordered</th>
         <tr/>
     </thead>
@@ -13,6 +14,7 @@
         <% @services.each do |s| %>
             <tr>
                 <td><%= link_to s.name, organiser_service_path(s) %></td>
+                <td><%= s.price %></td>
                 <td><%= s.orders.count %></td>
             </tr>
         <% end %>

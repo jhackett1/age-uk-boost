@@ -1,0 +1,20 @@
+<%= form_for [:organiser, @receipt] do |f| %>
+    <%= render "shared/errors", model: @receipt %>
+
+    <%= f.label :total %>
+    <br/>
+    <%= f.number_field :total, min: 0, step: 0.01 %>
+    <br/>
+
+    <%= f.label :user_id %>
+    <br/>
+    <%= f.collection_select :user_id, User.all, :id, :display_name %>
+    <br/>
+
+    <%= f.label :service_ids %>
+    <br/>
+    <%= f.collection_check_boxes :order_ids, Order.all, :id, :name %>
+    <br/>
+
+    <%= f.submit %>
+<% end %>

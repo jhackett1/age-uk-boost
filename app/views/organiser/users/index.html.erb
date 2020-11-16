@@ -5,14 +5,16 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Role</th>
             <th scope="col">Joined</th>
         <tr/>
     </thead>
     <tbody>
         <% @users.each do |u| %>
             <tr>
-                <td><%= u.display_name %></td>
+                <td><%= link_to u.display_name, organiser_user_path(u) %></td>
                 <td><%= u.email %></td>
+                <td><%= u.role.name.humanize %></td>
                 <td><%= time_ago_in_words(u.created_at).humanize %> ago</td>
             </tr>
         <% end %>

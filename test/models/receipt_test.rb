@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ClientTest < ActiveSupport::TestCase
+class ReceiptTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -12,6 +12,7 @@ class Organiser::ServicesController < Organiser::BaseController
     def create
         @service = Service.create(service_params)
         if @service.save
+            flash[:notice] = "Service has been created"
             redirect_to organiser_services_path
         else
             render :show
@@ -23,6 +24,7 @@ class Organiser::ServicesController < Organiser::BaseController
 
     def update
         @service.update(service_params)
+        flash[:notice] = "Service has been updated"
         render :show
     end
 
@@ -34,7 +36,8 @@ class Organiser::ServicesController < Organiser::BaseController
 
     def service_params
         params.require(:service).permit(
-            :name
+            :name,
+            :price
         )
     end
 end
