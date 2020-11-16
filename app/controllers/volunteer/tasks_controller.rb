@@ -2,7 +2,11 @@ class Volunteer::TasksController < Volunteer::BaseController
     before_action :set_task, only: [:show, :update]
 
     def index
-        @tasks = Order.available
+        if params[:recent] === "true"
+            @clients = User.includes(:orders).order("orders.created_at DESC")
+        else
+            @clients = User.near([current_user.latitude, current_user.longitude], 200000)
+        end
     end
 
     def show

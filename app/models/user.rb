@@ -45,5 +45,5 @@ class User < ApplicationRecord
   end
 
   scope :has_role, -> (name){ joins(:role).where("roles.name = ?", name)}
-
+  scope :with_available_tasks, -> { where("orders.approved = TRUE AND assignee_id IS NULL") }
 end

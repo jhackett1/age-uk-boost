@@ -2,21 +2,11 @@
 
 <%= link_to "Add a service", new_organiser_service_path %>
 
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price (£)</th>
-            <th scope="col">Ordered</th>
-        <tr/>
-    </thead>
-    <tbody>
-        <% @services.each do |s| %>
-            <tr>
-                <td><%= link_to s.name, organiser_service_path(s) %></td>
-                <td><%= s.price %></td>
-                <td><%= s.orders.count %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<ul>
+    <% @services.each do |s| %>
+        <li>
+            <h2><%= link_to s.name, organiser_service_path(s) %></h2>
+            <p>£<%= s.price %></p>
+        </li>
+    <% end %>
+</ul>

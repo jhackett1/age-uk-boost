@@ -1,5 +1,9 @@
 <h1><%= @task.name %></h1>
 
+<pre><code><%= @task.inspect %></code></pre>
+
+<pre><code><%= @task.client.inspect %></code></pre>
+
 
 <% if @task.assignee === current_user %>
     You've claimed this task

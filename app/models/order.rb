@@ -10,5 +10,13 @@ class Order < ApplicationRecord
     services.map{ |s| s.name }.join(", ").humanize
   end
 
+  def total
+    total = 0
+    services.each do |s|
+      total += s.price
+    end
+    total
+  end
+
   scope :available, -> { where("approved = TRUE AND assignee_id IS NULL") }
 end

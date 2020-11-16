@@ -5,6 +5,7 @@
 <table>
     <thead>
         <tr>
+            <th scope="col">Total (£)</th>
             <th scope="col">Services</th>
             <th scope="col">Client</th>
             <th scope="col">Urgent</th>
@@ -16,6 +17,7 @@
     <tbody>
         <% @orders.each do |o| %>
             <tr>
+                <td><%= o.total %></td>
                 <td><%= o.services.map{ |s| s.name }.join(", ") %></td>
                 <td><%= link_to o.client.display_name, organiser_user_path(o.client) %></td>
                 <td><%= o.urgent %></td>

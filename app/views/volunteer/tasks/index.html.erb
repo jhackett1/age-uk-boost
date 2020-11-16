@@ -1,14 +1,29 @@
 <h1>Available tasks</h1>
 
-<% if @tasks.any? %>
+<%= link_to "Nearest", volunteer_tasks_path %>
+<%= link_to "Most recent", volunteer_tasks_path(recent: true) %>
+
+<% if @clients.any? %>
     <ol>
-        <% @tasks.each do |t| %>
-            <li>
-                <%= link_to t.name, volunteer_task_path(t) %>
-            </li>
+        <% @clients.each do |c| %>
+            <% c.orders.available.each do |o| %>
+                <li>
+                    <h2><%= link_to o.id, volunteer_task_path(o) %></h2>
+                    <% if c.try(:distance) %>
+                        <p><%= c.rough_distance %></p>
+                    <% end %>
+                    <p><%= time_ago_in_words(o.created_at).humanize %> ago</p>
+                </li>
+            <% end %>
         <% end %>
-    <ol>
+    </ol>
 <% else %>
     <p>There's no available tasks right now</p>
     <p>Please check back later</p>
 <% end %>
+
+<script>
+    __MARKERS__ = <%= raw @clients.to_json %>
+</script>
+
+<div id="map" style="height: 300px; width: 400px;"></div>

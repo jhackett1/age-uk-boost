@@ -7,7 +7,7 @@ const initMap = () => {
     })
         .addTo(map)
 
-    __USERS__.map(user => {
+    __MARKERS__.map(user => {
         L.marker([user.latitude, user.longitude], {
             title: user.email
         })
