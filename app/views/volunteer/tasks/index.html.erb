@@ -1,1 +1,14 @@
 <h1>Available tasks</h1>
+
+<% if @tasks.any? %>
+    <ol>
+        <% @tasks.each do |t| %>
+            <li>
+                <%= link_to t.name, volunteer_task_path(t) %>
+            </li>
+        <% end %>
+    <ol>
+<% else %>
+    <p>There's no available tasks right now</p>
+    <p>Please check back later</p>
+<% end %>

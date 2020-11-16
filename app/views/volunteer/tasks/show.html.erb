@@ -1,0 +1,9 @@
+<h1><%= @task.name %></h1>
+
+
+<% if @task.assignee === current_user %>
+    You've claimed this task
+    <%= link_to "Unclaim", volunteer_task_path(@task), method: "PATCH" %>
+<% else %>
+    <%= link_to "Claim task", volunteer_task_path(@task), method: "PATCH" %>
+<% end %>

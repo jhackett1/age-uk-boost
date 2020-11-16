@@ -1,4 +1,16 @@
 <h1>Planner</h1>
 
-<h2>Your next task</h2>
-
+<% if @tasks.any? %>
+<ol>
+    <% @tasks.each do |t| %>
+        <li>
+            <h2><%= link_to t.name, volunteer_task_path(t) %></h2>
+            <p><%= t.client.display_name %></p>
+            <small><%= time_ago_in_words(t.created_at).humanize %> ago</small>
+        </li>
+    <% end %>
+<ol>
+<% else %>
+    <p>There's nothing in your planner yet</p>
+    <p><%= link_to "See available tasks", volunteer_tasks_path %></p>
+<% end %>

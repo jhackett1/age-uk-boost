@@ -9,19 +9,22 @@
             <th scope="col">Client</th>
             <th scope="col">Urgent</th>
             <th scope="col">Approved</th>
-            <th scope="col">Made</th>
             <th scope="col">Assigned to</th>
-
-        <tr/>
+            <th scope="col">Made</th>
+        </tr>
     </thead>
     <tbody>
         <% @orders.each do |o| %>
             <tr>
                 <td><%= o.services.map{ |s| s.name }.join(", ") %></td>
-                <td><%= link_to o.client.name, organiser_client_path(o.client) %></td>
+                <td><%= link_to o.client.display_name, organiser_user_path(o.client) %></td>
                 <td><%= o.urgent %></td>
                 <td><%= o.approved %></td>
-                <td><%= link_to o.user.display_name, organiser_user_path(o.user) %></td>
+                <td>
+                    <%= form_for [:organiser, o], html: { onchange: "this.submit()" } do |f| %>
+                        <%= f.collection_select :assignee_id, User.all, :id, :display_name, include_blank: "—" %>
+                    <% end %>
+                </td>
                 <td><%= time_ago_in_words(o.created_at).humanize %> ago</td>
 
                 <td><%= link_to "Edit", organiser_order_path(o) %></td>

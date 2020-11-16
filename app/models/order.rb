@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   has_and_belongs_to_many :receipts
 
   def name
-    id
+    services.map{ |s| s.name }.join(", ").humanize
   end
+
+  scope :available, -> { where("approved = TRUE AND assignee_id IS NULL") }
 end

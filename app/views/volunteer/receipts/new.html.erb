@@ -1,4 +1,6 @@
-<%= form_for [:organiser, @receipt] do |f| %>
+<h1>Add a new receipt</h1>
+
+<%= form_for [:volunteer, @receipt] do |f| %>
     <%= render "shared/errors", model: @receipt %>
 
     <%= f.label :total %>
@@ -6,12 +8,7 @@
     <%= f.number_field :total, min: 0, step: 0.01 %>
     <br/>
 
-    <%= f.label :user_id %>
-    <br/>
-    <%= f.collection_select :user_id, User.all, :id, :display_name %>
-    <br/>
-
-    <%= f.label :service_ids %>
+    <%= f.label :order_ids %>
     <br/>
     <%= f.collection_check_boxes :order_ids, Order.all, :id, :name %>
     <br/>
@@ -19,12 +16,6 @@
     <%= f.label :image %>
     <br/>
     <%= f.file_field :image %>
-    <br/>
-
-    <% if @receipt.image.present? %>
-        <%= image_tag url_for(@receipt.image) %>
-    <% end %>
-
     <br/>
 
     <%= f.submit %>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root "clients#index"
-  resources "clients", except: "edit"  
+  root "requests#index"
+  resources "requests", except: "edit"  
 
   devise_for :users
 

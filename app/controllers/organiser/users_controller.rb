@@ -11,6 +11,7 @@ class Organiser::UsersController < Organiser::BaseController
 
     def create
         @user = User.create(user_params)
+        @user.password = SecureRandom.urlsafe_base64
         if @user.save
             flash[:notice] = "User has been created"
             redirect_to organiser_users_path

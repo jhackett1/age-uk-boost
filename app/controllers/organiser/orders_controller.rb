@@ -25,7 +25,8 @@ class Organiser::OrdersController < Organiser::BaseController
     def update
         @order.update(order_params)
         flash[:notice] = "Order has been updated"
-        render :show
+        redirect_to request.referer
+        # render :show
     end
 
     private
@@ -40,7 +41,7 @@ class Organiser::OrdersController < Organiser::BaseController
             :approved,
             :due,
             :client_id,
-            :user_id,
+            :assignee_id,
             service_ids: []
         )
     end

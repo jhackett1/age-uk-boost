@@ -38,6 +38,7 @@ class Organiser::ReceiptsController < Organiser::BaseController
         params.require(:receipt).permit(
             :total,
             :user_id,
+            :image,
             order_ids: []
         )
     end

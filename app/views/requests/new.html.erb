@@ -1,3 +1,5 @@
+<h1>New request for help</h1>
+
 <%= form_for [:organiser, @user] do |f| %>
     <%= render "shared/errors", model: @user %>
 
@@ -31,10 +33,19 @@
     <%= f.text_field :postcode %>
     <br/>
 
-    <%= f.label :role_id %>
-    <br/>
-    <%= f.collection_select :role_id, Role.all, :id, :name %>
-    <br/>
+    <%= f.fields_for :order do |ff| %>
+
+        <%= ff.label :urgent %>
+        <br/>
+        <%= ff.check_box :urgent %>
+        <br/>
+
+        <%= ff.label :service_ids %>
+        <br/>
+        <%= ff.collection_check_boxes :service_ids, Service.all, :id, :name %>
+        <br/>
+
+    <% end %>
 
     <%= f.submit %>
 <% end %>

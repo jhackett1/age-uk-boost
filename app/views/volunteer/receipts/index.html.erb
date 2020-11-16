@@ -1,0 +1,15 @@
+<h1>Receipts</h1>
+
+<%= link_to "Add a receipt", new_volunteer_receipt_path %>
+
+<% if @receipts.any? %>
+    <ol>
+        <% @receipts.each do |r| %>
+            <li>
+                <%= r.inspect %>
+            </li>
+        <% end %>
+    <ol>
+<% else %>
+    <p>You haven't added any receipts yet</p>
+<% end %>
