@@ -1,3 +1,5 @@
-<h1><%= @service.name %></h1>
+<%= link_to "Back", organiser_services_path, class: "govuk-back-link auk-back-link" %>
+
+<h1 class="govuk-heading-l"><%= @service.name %></h1>
 
 <%= render "form" %>

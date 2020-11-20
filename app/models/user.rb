@@ -3,10 +3,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders, foreign_key: "client_id", class_name: "Order"
+  has_many :orders, foreign_key: "client_id", class_name: "Order", inverse_of: :client
   has_many :tasks, foreign_key: "assignee_id", class_name: "Order"
   has_many :receipts
   belongs_to :role
+
+  accepts_nested_attributes_for :orders
 
   validates :email, presence: true
   validates :phone, presence: true
@@ -18,6 +20,20 @@ class User < ApplicationRecord
   geocoded_by :whole_address
   
   after_validation :geocode
+
+  include PgSearch::Model
+  
+  pg_search_scope :search, against: [
+      :email, 
+      :first_name, 
+      :last_name, 
+      :address, 
+      :postcode, 
+      :phone
+    ],
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def postal_code_is_valid
       parsed = UKPostcode.parse(postcode)
@@ -34,16 +50,5 @@ class User < ApplicationRecord
     [address, postcode, "UK"].compact.join(', ')
   end
 
-  def rough_distance
-    if distance < 1
-      "Less than a mile away"
-    elsif (1 < distance) && (distance < 2)
-      "About a mile away"
-    else
-      "About #{distance.round} miles away"
-    end
-  end
-
   scope :has_role, -> (name){ joins(:role).where("roles.name = ?", name)}
-  scope :with_available_tasks, -> { where("orders.approved = TRUE AND assignee_id IS NULL") }
 end

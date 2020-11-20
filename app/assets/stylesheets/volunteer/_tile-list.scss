@@ -1,0 +1,53 @@
+.tile-list{
+    list-style: none;
+    padding-left: 0;
+
+    &__tile{
+        background: $white;
+        border-radius: 5px;
+        border-left: 5px solid $bright-blue;
+        padding: 20px;
+        box-shadow: 0px 4px 20px transparentize($black, 0.9);
+        margin-bottom: 15px;
+        position: relative;
+        transition: box-shadow 0.1s ease-out;
+
+        &:hover{
+            box-shadow: 0px 4px 20px transparentize($black, 0.8);   
+        }
+
+        &--urgent{
+            border-color: $red;
+        }
+
+        *:first-child{
+            margin-top: 0;
+        }
+
+        *:last-child{
+            margin-bottom: 0;
+        }
+
+        a{
+            color: $black;
+            text-decoration: none;
+            &:before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -5px;
+                right: 0;
+                height: 100%;
+                display: block;
+                border-radius: 5px;
+            }
+
+            &:focus{
+                outline: none;
+                &:before{
+                    box-shadow: 0px 0px 0px 3px $yellow;
+                }
+            }
+        }
+    }
+}

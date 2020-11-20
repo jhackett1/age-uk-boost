@@ -1,13 +1,29 @@
 <h1><%= @task.name %></h1>
 
-<pre><code><%= @task.inspect %></code></pre>
-
-<pre><code><%= @task.client.inspect %></code></pre>
-
+<p>
+    <%= rough_distance(@task.client.distance_to([current_user.latitude, current_user.longitude])) %> 
+    | 
+    <%= time_ago_in_words(@task.created_at).humanize %> ago
+</p>
 
 <% if @task.assignee === current_user %>
-    You've claimed this task
-    <%= link_to "Unclaim", volunteer_task_path(@task), method: "PATCH" %>
+
+    <p><%= @task.client.first_name %> <%= @task.client.last_name %></p>
+
+    <p><%= @task.client.email %></p>
+    <p><%= @task.client.phone%></p>
+
+    <p><%= @task.client.address %></p>
+    <p><%= @task.client.postcode %></p>
+
+    <% if @task.completed_at %>
+        <%= link_to "Mark as not done", volunteer_task_done_path(@task), method: "POST", class: "button button--outline" %>
+    <% else %>
+        <%= link_to "Mark as done", volunteer_task_done_path(@task), method: "POST", class: "button" %>
+        <%= link_to "Unclaim", volunteer_task_path(@task), method: "PATCH", class: "button button--outline", data: { confirm: "Are you sure you want to release this task? It will be available for others to claim" } %>
+    <% end %>
+
 <% else %>
-    <%= link_to "Claim task", volunteer_task_path(@task), method: "PATCH" %>
+    <p>Claim this task to see more details.</p>
+    <%= link_to "Claim task", volunteer_task_path(@task), method: "PATCH", class: "button" %>
 <% end %>

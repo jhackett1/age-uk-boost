@@ -37,3 +37,7 @@ gem 'stripe'
 gem 'uk_postcode'
 gem 'geocoder'
 gem 'webpacker'
+
+gem 'filterrific'
+gem 'pg_search'
+gem 'kaminari'

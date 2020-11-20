@@ -1,6 +1,8 @@
 class Volunteer::BaseController < ApplicationController
     before_action :authenticate_user!
-    before_action :volunteers_only
+    # before_action :volunteers_only
+
+    layout "volunteer"
 
     private
 

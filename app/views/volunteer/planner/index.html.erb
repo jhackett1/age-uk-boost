@@ -1,13 +1,13 @@
-<h1>Planner</h1>
+<h1 class="visually-hidden">Planner</h1>
 
 <% if @tasks.any? %>
-<ol>
-    <% @tasks.each do |t| %>
-        <li>
-            <h2><%= link_to t.name, volunteer_task_path(t) %></h2>
-            <p><%= t.client.display_name %></p>
-            <small><%= time_ago_in_words(t.created_at).humanize %> ago</small>
-        </li>
+<ol class="tile-list">
+    <h2>Next up</h2>
+    <% @tasks.each_with_index do |t, i| %>
+        <% if i === 1 %>
+            <h2>Due later</h2>
+        <% end %>
+        <%= render "shared/volunteer/tile", o: t %>
     <% end %>
 <ol>
 <% else %>

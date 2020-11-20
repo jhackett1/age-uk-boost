@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :volunteer do
     root "planner#index"
-    resources "tasks", except: "edit"  
+    resources "tasks", except: "edit" do
+      post "done", to: "tasks#done"
+    end
     resources "receipts", except: "edit"   
   end
 

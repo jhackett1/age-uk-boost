@@ -1,0 +1,27 @@
+.auk-statboxes{
+
+    &__box{
+        background: $govuk-canvas-background-colour;
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    &__value{
+        margin-left: 0;
+    }
+
+    &__caption{
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    @media screen and (min-width: 900px){
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 25px;
+
+        &__box{
+            margin-bottom: 15px;
+        }
+    }
+}

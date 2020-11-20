@@ -1,0 +1,13 @@
+<% if current_user %>
+    <nav class="auk-layout__sidebar">
+        <ul class="govuk-list">
+            <% if current_user.role.name === "organiser" %>
+                <%= render "shared/nav_link", link_text: "Dashboard", link_path: organiser_root_path %>
+                <%= render "shared/nav_link", link_text: "Orders", link_path: organiser_orders_path %>
+                <%= render "shared/nav_link", link_text: "Services", link_path: organiser_services_path %>
+                <%= render "shared/nav_link", link_text: "People", link_path: organiser_users_path %>
+                <%= render "shared/nav_link", link_text: "Receipts", link_path: organiser_receipts_path %>
+            <% end %>
+        </ul>
+    </nav>
+<% end %>

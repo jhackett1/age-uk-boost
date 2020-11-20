@@ -1,19 +1,28 @@
-<h1>Available tasks</h1>
+<h1 class="visually-hidden">Available tasks</h1>
 
-<%= link_to "Nearest", volunteer_tasks_path %>
-<%= link_to "Most recent", volunteer_tasks_path(recent: true) %>
+<%= form_tag volunteer_tasks_path, method: "get", onchange: "this.submit()" do %>
+    <%= label_tag :sort, "Sort by", class: "visually-hidden" %>
+    <%= select_tag :sort, options_for_select([
+        ["Nearest", "nearest"],
+        ["Most recent", "recent"]
+    ], params[:sort]) %>
+
+    <%= check_box_tag :map, true, params[:map] %>
+    <%= label_tag :map, "Show map?" %>
+<% end %>
+
+<% if params[:map].present? %>
+    <script>
+        __MARKERS__ = <%= raw @clients.to_json %>
+    </script>
+    <div id="map-canvas" style="height: 300px; width: 100%;"></div>
+<% end %>
 
 <% if @clients.any? %>
-    <ol>
+    <ol class="tile-list">
         <% @clients.each do |c| %>
             <% c.orders.available.each do |o| %>
-                <li>
-                    <h2><%= link_to o.id, volunteer_task_path(o) %></h2>
-                    <% if c.try(:distance) %>
-                        <p><%= c.rough_distance %></p>
-                    <% end %>
-                    <p><%= time_ago_in_words(o.created_at).humanize %> ago</p>
-                </li>
+                <%= render "shared/volunteer/tile", o: o %>
             <% end %>
         <% end %>
     </ol>
@@ -21,9 +30,3 @@
     <p>There's no available tasks right now</p>
     <p>Please check back later</p>
 <% end %>
-
-<script>
-    __MARKERS__ = <%= raw @clients.to_json %>
-</script>
-
-<div id="map" style="height: 300px; width: 400px;"></div>

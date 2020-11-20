@@ -1,29 +1,53 @@
-<h1>Users</h1>
+<h1 class="govuk-heading-l">People</h1>
 
-<%= link_to "Add a new user", new_organiser_user_path %>
+<%= link_to "Add a new user", new_organiser_user_path, class: "govuk-button" %>
 
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">Postcode</th>
-            <th scope="col">Joined</th>
+<%= form_with url: organiser_users_path, local: true, method: "get", class: "auk-mini-search" do |f| %>
+
+  <div class="govuk-form-group auk-mini-search__field">
+    <label class="govuk-visually-hidden" for="query">
+      Search
+    </label>
+    <%= f.text_field :query, value: params[:query], placeholder: "Search by name or contact detail", class: "govuk-input" %>
+  </div>
+
+  <%= f.submit "Search", class: "govuk-button auk-mini-search__button"%>
+
+<% end %>
+
+<details class="govuk-details" data-module="govuk-details" ontoggle="handleMapToggle()">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Map view
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <div id="map-canvas" style="height: 300px; width: 100%;"></div>
+  </div>
+</details>
+
+<table class="govuk-table">
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Email</th>
+            <th scope="col" class="govuk-table__header">Role</th>
+            <th scope="col" class="govuk-table__header">Phone</th>
+            <th scope="col" class="govuk-table__header">Address</th>
+            <th scope="col" class="govuk-table__header">Joined</th>
         <tr/>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body govuk-!-font-size-16">
         <% @users.each do |u| %>
-            <tr>
-                <td><%= link_to u.display_name, organiser_user_path(u) %></td>
-                <td><%= u.email %></td>
-                <td><%= u.role.name.humanize %></td>
-                <td><%= u.phone %></td>
-                <td><%= u.address %></td>
-                <td><%= u.postcode %></td>
-                <td><%= time_ago_in_words(u.created_at).humanize %> ago</td>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><%= link_to u.display_name, organiser_user_path(u) %></td>
+                <td class="govuk-table__cell"><%= u.email %></td>
+                <td class="govuk-table__cell">
+                  <%= render "shared/role_tag", role: u.role %>
+                </td>
+                <td class="govuk-table__cell"><%= u.phone %></td>
+                <td class="govuk-table__cell"><%= u.address %> <%= u.postcode %></td>
+                <td class="govuk-table__cell"><%= time_ago_in_words(u.created_at).humanize %> ago</td>
             </tr>
         <% end %>
     </tbody>
@@ -32,5 +56,3 @@
 <script>
     __MARKERS__ = <%= raw @users.to_json %>
 </script>
-
-<div id="map" style="height: 300px; width: 400px;"></div>

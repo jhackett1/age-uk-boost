@@ -1,46 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="govuk-template ">
   <head>
+    <meta charset="utf-8">
+
     <title>AgeUk</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'organiser', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c"> 
   </head>
 
-  <body>
+  <body class="govuk-template__body ">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-    <% if current_user.present? %>
-      <%= link_to current_user.display_name, edit_user_registration_path %>
-      <strong><%= link_to "Log out", destroy_user_session_path, method: "delete" %></strong>
-    <% else %>
-      <%= link_to "Log in", user_session_path %>
-    <% end %>
-    <hr/>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-    <% if current_user %>
-      <nav>
-        <ul>
-          <% if current_user.role.name === "organiser" %>
-            <li><%= link_to "Dashboard", organiser_root_path %></li>
-            <li><%= link_to "Orders", organiser_orders_path %></li>
-            <li><%= link_to "Services", organiser_services_path %></li>
-            <li><%= link_to "Users", organiser_users_path %></li>
-            <li><%= link_to "Receipts", organiser_receipts_path %></li>
-          <% elsif current_user.role.name === "volunteer"  %>
-            <li><%= link_to "Planner", volunteer_root_path %></li>
-            <li><%= link_to "Tasks", volunteer_tasks_path %></li>
-            <li><%= link_to "Receipts", volunteer_receipts_path %></li>
+    <header class="auk-header" role="banner" data-module="govuk-header">
+      <div class="govuk-width-container auk-header__inner">
+        <a href="/" class="auk-header__masthead">
+          <%= image_tag "ageuk.png" %>
+        </a>
+
+        <nav class="auk-header__navigation govuk-!-font-size-19">
+          <ul aria-label="Navigation menu">
+            <% if current_user.present? %>
+              <li>
+                <strong><%= link_to current_user.display_name, edit_user_registration_path, class: "govuk-link govuk-link--no-visited-state" %></strong>
+              </li>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "govuk-link govuk-link--no-visited-state" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Log in", user_session_path, class: "govuk-link govuk-link--no-visited-state" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+
+
+    <div class="govuk-width-container ">
+
+    <div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service.
+    </span>
+  </p>
+</div>
+
+
+      <div class="govuk-main-wrapper auk-layout">
+      
+        <%= render "shared/nav" %>
+        
+        <main class="auk-layout__pane" id="main-content" role="main">
+
+          <% if flash[:notice].present? %>
+            <div class="auk-flash">
+              <p><%= flash[:notice] %></p>
+            </div>
           <% end %>
-        </ul>
-      </nav>
-      <hr/>
-    <% end %>
+          
+          <% if flash[:alert].present? %>
+            <div class="auk-flash auk-flash--alert">
+              <p><%= flash[:alert] %></p>
+            </div>
+          <% end %>
 
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
+          <%= yield %>
+        </main>
+      
+      </div>
+    </div>
 
-    <%= yield %>
+    <footer class="govuk-footer " role="contentinfo">
+      <div class="govuk-width-container ">
+        <div class="govuk-footer__meta">
+          <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+            <span class="govuk-footer__licence-description">
+              Age UK, Tavis House, 1-6 Tavistock Square, London WC1H 9NA. Registered charity number 1128267
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'main', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

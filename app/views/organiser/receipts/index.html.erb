@@ -1,25 +1,25 @@
-<h1>Receipts</h1>
+<h1 class="govuk-heading-l">Receipts</h1>
 
-<%= link_to "Add a receipt", new_organiser_receipt_path %>
+<%= link_to "Add a receipt", new_organiser_receipt_path, class: "govuk-button" %>
 
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Related orders</th>
-            <th scope="col">From</th>
-            <th scope="col">Total (£)</th>
-            <th scope="col">Submitted</th>
+<table class="govuk-table">
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Related orders</th>
+            <th scope="col" class="govuk-table__header">From</th>
+            <th scope="col" class="govuk-table__header">Total (£)</th>
+            <th scope="col" class="govuk-table__header">Submitted</th>
         <tr/>
     </thead>
-    <tbody>
+    <tbody class="govuk-table__body">
         <% @receipts.each do |o| %>
-            <tr>
-                <td><%= o.orders.map{ |s| s.name }.join(", ") %></td>             
-                <td><%= link_to o.user.display_name, organiser_user_path(o.user) %></td>
-                <td><%= o.total %></td>   
-                <td><%= time_ago_in_words(o.created_at).humanize %> ago</td>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><%= o.orders.map{ |s| s.name }.join(", ") %></td>             
+                <td class="govuk-table__cell"><%= link_to o.user.display_name, organiser_user_path(o.user) %></td>
+                <td class="govuk-table__cell"><%= o.total %></td>   
+                <td class="govuk-table__cell"><%= time_ago_in_words(o.created_at).humanize %> ago</td>
 
-                <td><%= link_to "Edit", organiser_receipt_path(o) %></td>
+                <td class="govuk-table__cell"><%= link_to "Edit", organiser_receipt_path(o) %></td>
             </tr>
         <% end %>
     </tbody>

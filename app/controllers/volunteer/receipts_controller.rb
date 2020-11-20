@@ -13,7 +13,7 @@ class Volunteer::ReceiptsController < Volunteer::BaseController
             flash[:notice] = "Receipt has been created"
             redirect_to volunteer_receipts_path
         else
-            render :show
+            render :new
         end
     end
 
@@ -23,6 +23,7 @@ class Volunteer::ReceiptsController < Volunteer::BaseController
         params.require(:receipt).permit(
             :total,
             :image,
+            :comment,
             order_ids: []
         )
     end

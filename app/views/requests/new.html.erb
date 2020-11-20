@@ -1,6 +1,6 @@
 <h1>New request for help</h1>
 
-<%= form_for [:organiser, @user] do |f| %>
+<%= form_for @user, url: requests_path do |f| %>
     <%= render "shared/errors", model: @user %>
 
     <%= f.label :first_name %>
@@ -12,6 +12,7 @@
     <br/>
     <%= f.text_field :last_name %>
     <br/>
+
 
     <%= f.label :email %>
     <br/>
@@ -33,7 +34,7 @@
     <%= f.text_field :postcode %>
     <br/>
 
-    <%= f.fields_for :order do |ff| %>
+    <%= f.fields_for :orders do |ff| %>
 
         <%= ff.label :urgent %>
         <br/>

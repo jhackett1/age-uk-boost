@@ -1,0 +1,21 @@
+@import "govuk-frontend/govuk/settings/all";
+
+$govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+$govuk-global-styles: true;
+$govuk-link-visited-colour: $govuk-link-colour;
+
+@import "govuk-frontend/govuk/all";
+
+@import "leaflet/dist/leaflet.css";
+
+@import "organiser/header";
+@import "organiser/layout";
+@import "organiser/mini-search";
+@import "organiser/flash";
+@import "organiser/big-list";
+@import "organiser/statbox";
+
+.auk-table-holder{
+    width: 100%;
+    overflow-x: auto;
+}

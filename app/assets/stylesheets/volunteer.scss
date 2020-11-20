@@ -1,0 +1,48 @@
+@import "volunteer/normalise";
+@import "leaflet/dist/leaflet.css";
+
+@import "volunteer/vars";
+@import "volunteer/globals";
+@import "volunteer/navigation";
+@import "volunteer/tile-list";
+@import "volunteer/button";
+@import "volunteer/tag";
+@import "volunteer/flash";
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+}
+
+.visually-hidden{
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.app-layout{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header{
+    padding: 15px 3vw;
+    a:focus{
+        outline: 3px solid $yellow;
+    }
+    img{
+        max-width: 120px;
+    }
+}
+
+.app-wrapper{
+    flex: 1;
+    padding: 15px 3vw;
+    overflow-y: auto;
+}

@@ -2,7 +2,20 @@ class Organiser::OrdersController < Organiser::BaseController
     before_action :set_order, only: [:show, :update]
 
     def index
-        @orders = Order.all
+        @filterrific = initialize_filterrific(
+            Order,
+            params[:filterrific],
+            persistence_id: false,
+            available_filters: [
+                :approved, 
+                :urgent,
+                :sorted_by
+            ],
+            select_options: {
+                sorted_by: Order.options_for_sorted_by
+            },
+        ) or return
+        @orders = @filterrific.find.page(params[:page])
     end
 
     def new
@@ -15,7 +28,7 @@ class Organiser::OrdersController < Organiser::BaseController
             flash[:notice] = "Order has been created"
             redirect_to organiser_orders_path
         else
-            render :show
+            render :new
         end
     end
 
@@ -23,6 +36,9 @@ class Organiser::OrdersController < Organiser::BaseController
     end
 
     def update
+
+        # byebug
+
         @order.update(order_params)
         flash[:notice] = "Order has been updated"
         redirect_to request.referer
@@ -38,7 +54,7 @@ class Organiser::OrdersController < Organiser::BaseController
     def order_params
         params.require(:order).permit(
             :urgent,
-            :approved,
+            :approved_at,
             :due,
             :client_id,
             :assignee_id,

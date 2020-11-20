@@ -1,12 +1,17 @@
-<h1>Receipts</h1>
+<h1 class="visually-hidden">Receipts</h1>
 
-<%= link_to "Add a receipt", new_volunteer_receipt_path %>
+<%= link_to "Add a receipt", new_volunteer_receipt_path, class: "button" %>
 
 <% if @receipts.any? %>
-    <ol>
+    <ol class="tile-list">
         <% @receipts.each do |r| %>
-            <li>
-                <%= r.inspect %>
+            <li class="tile-list__tile">
+                <h2>
+                    £<%= number_with_precision(r.total, precision: 2) %>
+                </h2>
+                <p>
+                    <%= time_ago_in_words(r.created_at).humanize %> ago
+                </p>
             </li>
         <% end %>
     <ol>

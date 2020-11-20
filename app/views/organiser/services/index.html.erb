@@ -1,8 +1,8 @@
-<h1>Services</h1>
+<h1 class="govuk-heading-l">Services</h1>
 
-<%= link_to "Add a service", new_organiser_service_path %>
+<%= link_to "Add a service", new_organiser_service_path, class: "govuk-button" %>
 
-<ul>
+<ul class="govuk-list auk-big-list">
     <% @services.each do |s| %>
         <li>
             <h2><%= link_to s.name, organiser_service_path(s) %></h2>

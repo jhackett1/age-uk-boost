@@ -1,0 +1,17 @@
+<li>
+    <% if url_for === link_path %>
+
+        <%= link_to link_path, class: "app-navigation__active" do %>
+            <%= svg "#{link_text.downcase}.svg" %>
+            <%= link_text %>
+        <% end %>
+
+    <% else %>
+
+        <%= link_to link_path do %>
+            <%= svg "#{link_text.downcase}.svg" %>
+            <%= link_text %>
+        <% end %>
+
+    <% end %>
+</li>

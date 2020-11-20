@@ -1,9 +1,9 @@
 <%= form_for [:organiser, @order] do |f| %>
     <%= render "shared/errors", model: @order %>
 
-    <%= f.label :approved %>
+    <%= f.label :approved_at %>
     <br/>
-    <%= f.check_box :approved %>
+    <%= f.check_box :approved_at, {checked: @order.approved_at.present?}, Time.now %>
     <br/>
 
     <%= f.label :urgent %>
@@ -11,20 +11,20 @@
     <%= f.check_box :urgent %>
     <br/>
 
-    <%= f.label :client_id %>
-    <br/>
-    <%= f.collection_select :client_id, User.has_role("client"), :id, :display_name %>
-    <br/>
+    <div class="govuk-form-group">
+        <%= f.label :client_id, class: "govuk-label" %>
+        <%= f.collection_select :client_id, User.has_role("client"), :id, :display_name, {}, {class: "govuk-select"} %>
+    </div>
 
-    <%= f.label :assignee_id %>
-    <br/>
-    <%= f.collection_select :assignee_id, User.has_role("volunteer"), :id, :display_name, include_blank: "—" %>
-    <br/>
+    <div class="govuk-form-group">
+        <%= f.label :assignee_id, class: "govuk-label" %>
+        <%= f.collection_select :assignee_id, User.has_role("volunteer"), :id, :display_name, {include_blank: "—" }, {class: "govuk-select"} %>
+    </div>
 
     <%= f.label :service_ids %>
     <br/>
     <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
     <br/>
 
-    <%= f.submit %>
+    <%= f.submit class: "govuk-button" %>
 <% end %>

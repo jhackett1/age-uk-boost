@@ -3,6 +3,7 @@ class Organiser::UsersController < Organiser::BaseController
 
     def index
         @users = User.all
+        @users = @users.search(params[:query]) if params[:query].present?
     end
 
     def new
@@ -16,7 +17,7 @@ class Organiser::UsersController < Organiser::BaseController
             flash[:notice] = "User has been created"
             redirect_to organiser_users_path
         else
-            render :show
+            render :new
         end
     end
 

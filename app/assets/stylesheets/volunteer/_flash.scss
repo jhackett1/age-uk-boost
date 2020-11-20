@@ -1,0 +1,15 @@
+.flash{
+    padding: 15px;
+    background: $bright-blue;
+    p{
+        margin: 0;
+        color: $white;
+    }
+
+    &--alert{
+        background: $yellow;
+        p{
+            color: $black;
+        }
+    }
+}

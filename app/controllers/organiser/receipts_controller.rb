@@ -15,7 +15,7 @@ class Organiser::ReceiptsController < Organiser::BaseController
             flash[:notice] = "Receipt has been created"
             redirect_to organiser_receipts_path
         else
-            render :show
+            render :new
         end
     end
 
@@ -39,6 +39,7 @@ class Organiser::ReceiptsController < Organiser::BaseController
             :total,
             :user_id,
             :image,
+            :comment,
             order_ids: []
         )
     end

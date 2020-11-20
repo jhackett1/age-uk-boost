@@ -1,0 +1,30 @@
+.auk-header{
+    padding: 10px 0px;
+    background: $govuk-canvas-background-colour;
+
+    &__inner{
+        @media screen and (min-width: 400px){
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__masthead{
+        max-width: 150px;
+    }
+
+    &__navigation{
+        ul{
+            padding-left: 0;
+            list-style: none;
+        }
+        li{
+            @media screen and (min-width: 400px){
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+    }
+}

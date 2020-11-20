@@ -18,5 +18,10 @@
     <%= f.file_field :image %>
     <br/>
 
-    <%= f.submit %>
+    <div>
+        <%= f.label :comment %>
+        <%= f.text_area :comment %>
+    </div>
+
+    <%= f.submit class: "button" %>
 <% end %>

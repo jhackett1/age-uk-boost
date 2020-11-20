@@ -2,8 +2,12 @@
   "name": "age-uk",
   "private": true,
   "dependencies": {
+    "@rails/ujs": "^6.0.3-4",
     "@rails/webpacker": "5.2.1",
-    "leaflet": "^1.7.1"
+    "@stripe/stripe-js": "^1.11.0",
+    "govuk-frontend": "^3.9.1",
+    "leaflet": "^1.7.1",
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"

@@ -1,0 +1,20 @@
+.auk-layout{
+    
+    &__pane{
+        margin-top: 35px;
+    }
+
+    @media screen and (min-width: 700px){
+        display: grid;
+        grid-template-columns: 200px 1fr;
+
+        &__pane{
+            margin-top: 0px;
+        }
+    }
+}
+
+.auk-back-link{
+    margin-top: 0px;
+    margin-bottom: 25px;
+}

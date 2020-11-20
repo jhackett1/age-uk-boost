@@ -15,7 +15,7 @@ class Organiser::ServicesController < Organiser::BaseController
             flash[:notice] = "Service has been created"
             redirect_to organiser_services_path
         else
-            render :show
+            render :new
         end
     end
 
