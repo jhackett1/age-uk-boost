@@ -10,78 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_203749) do
+ActiveRecord::Schema.define(version: 2020_11_21_204935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.boolean "urgent"
+  create_table "passwordless_sessions", force: :cascade do |t|
+    t.string "authenticatable_type"
+    t.bigint "authenticatable_id"
+    t.datetime "timeout_at", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "claimed_at"
+    t.text "user_agent", null: false
+    t.string "remote_addr", null: false
+    t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "client_id"
-    t.bigint "assignee_id"
-    t.datetime "completed_at"
-    t.datetime "approved_at"
-    t.index ["assignee_id"], name: "index_orders_on_assignee_id"
-    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
-  create_table "orders_receipts", id: false, force: :cascade do |t|
-    t.bigint "order_id"
-    t.bigint "receipt_id"
-    t.index ["order_id"], name: "index_orders_receipts_on_order_id"
-    t.index ["receipt_id"], name: "index_orders_receipts_on_receipt_id"
-  end
-
-  create_table "orders_services", id: false, force: :cascade do |t|
-    t.bigint "order_id"
-    t.bigint "service_id"
-    t.index ["order_id"], name: "index_orders_services_on_order_id"
-    t.index ["service_id"], name: "index_orders_services_on_service_id"
-  end
-
-  create_table "receipts", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.text "special_request"
     t.bigint "user_id"
-    t.float "total"
+    t.datetime "completed_at"
+    t.string "address"
+    t.string "postcode"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "email"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "comment"
-    t.index ["user_id"], name: "index_receipts_on_user_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "price"
+    t.boolean "urgent"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,7 +54,6 @@ ActiveRecord::Schema.define(version: 2020_11_17_203749) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "role_id"
     t.string "first_name"
     t.string "last_name"
     t.string "address"
@@ -100,12 +61,12 @@ ActiveRecord::Schema.define(version: 2020_11_17_203749) do
     t.string "phone"
     t.float "latitude"
     t.float "longitude"
+    t.boolean "admin"
+    t.boolean "notify_about_due_tasks"
+    t.boolean "notify_about_new_tasks"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "receipts", "users"
-  add_foreign_key "users", "roles"
+  add_foreign_key "tasks", "users"
 end

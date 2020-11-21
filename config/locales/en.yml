@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            base:
+              invalid_postcode: "Make sure you give a valid postcode, with a space in the middle."
+
+  helpers:
+    label:
+      task:
+        user: Claimed by

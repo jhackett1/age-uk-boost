@@ -2,18 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>AgeUk</title>
+        <title><%= yield :title %>Signal | Age UK</title>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <%= favicon_link_tag "favicon.ico" %>
     </head>
     <body class="app-layout">
 
         <header class="app-header" role="banner">
             <div class="container">
-                <%= link_to volunteer_root_path do %>
+                <%= link_to "/" do %>
                     <%= image_tag "ageuk.png" %>
                 <% end %>
             </div>
@@ -35,13 +36,15 @@
             </div>
         <% end %>
 
+        <%= yield :pre_content %>
+
         <main id="main-content" role="main" class="app-wrapper">
-            <div class="container">
+            <div class="container" style="height: 100%">
                 <%= yield %>
             </div>
         </main>
 
-        <%= render "shared/volunteer/nav" %>
+        <%= render "shared/nav" %>
 
         <%= javascript_pack_tag 'main', 'data-turbolinks-track': 'reload' %>
     </body>

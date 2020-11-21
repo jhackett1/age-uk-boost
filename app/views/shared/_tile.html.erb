@@ -1,14 +1,14 @@
-<li class="tile-list__tile <%= "tile-list__tile--urgent" if o.urgent %>">
+<li class="tile tile--clickable <%= "tile--urgent" if o.urgent %>">
     <h2>
         <% if o.urgent%>
             <strong class="tag">
                 Urgent
             </strong>
         <% end %>
-        <%= link_to o.name, volunteer_task_path(o) %>
+        <%= link_to o.name, task_path(o) %>
     </h2>
     <p>
-        <%= rough_distance(o.client.distance_to([current_user.latitude, current_user.longitude])) %> 
+        <%= rough_distance(o.distance_to([current_user.latitude, current_user.longitude])) %> 
         | 
         <%= time_ago_in_words(o.created_at).humanize %> ago
     </p>

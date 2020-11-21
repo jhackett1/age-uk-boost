@@ -1,31 +1,36 @@
+<%= content_for :title do %>
+    Available tasks | 
+<% end %>
+
 <h1 class="visually-hidden">Available tasks</h1>
 
-<%= form_tag volunteer_tasks_path, method: "get", onchange: "this.submit()" do %>
-    <%= label_tag :sort, "Sort by", class: "visually-hidden" %>
-    <%= select_tag :sort, options_for_select([
+<% form_tag tasks_path, method: "get", onchange: "this.submit()" do %>
+    <%# label_tag :sort, "Sort by", class: "visually-hidden" %>
+    <%# select_tag :sort, options_for_select([
         ["Nearest", "nearest"],
         ["Most recent", "recent"]
     ], params[:sort]) %>
-
-    <%= check_box_tag :map, true, params[:map] %>
-    <%= label_tag :map, "Show map?" %>
 <% end %>
 
-<% if params[:map].present? %>
-    <script>
-        __MARKERS__ = <%= raw @clients.to_json %>
-    </script>
-    <div id="map-canvas" style="height: 300px; width: 100%;"></div>
+<%= content_for :pre_content do %>
+    <%= render "shared/shortcut_nav" %>
 <% end %>
 
-<% if @clients.any? %>
-    <ol class="tile-list">
-        <% @clients.each do |c| %>
-            <% c.orders.available.each do |o| %>
-                <%= render "shared/volunteer/tile", o: o %>
+<% if @tasks.any? %>
+
+    <% if params[:map].present? %>
+        <script>
+            __MARKERS__ = <%= raw @tasks.to_json %>
+        </script>
+        <div id="map-canvas" class="map"></div>    
+    <% else %>     
+        <ol class="tile-list">
+            <% @tasks.each do |t| %>
+                <%= render "shared/tile", o: t %>
             <% end %>
-        <% end %>
-    </ol>
+        </ol>
+    <% end %>
+    
 <% else %>
     <p>There's no available tasks right now</p>
     <p>Please check back later</p>

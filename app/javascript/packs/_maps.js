@@ -8,14 +8,14 @@ const createMap = container => {
     })
         .addTo(map)
 
-    Array.prototype.concat(__MARKERS__).map(user => {
-        L.marker([user.latitude, user.longitude], {
-            title: user.email
+    Array.prototype.concat(__MARKERS__).map(task => {
+        L.marker([task.latitude, task.longitude], {
+            title: task.name
         })
             .addTo(map)
-            .on("click", () => window.location = `/organiser/users/${user.id}`)
+            .on("click", () => window.location = `/tasks/${task.id}`)
             
-        bounds.extend([user.latitude, user.longitude])
+        bounds.extend([task.latitude, task.longitude])
     })
 
     map.fitBounds(bounds)

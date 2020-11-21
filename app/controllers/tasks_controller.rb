@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-    before_action :set_task, only: [:show, :update, :done]
+    before_action :authenticate_user!
+    before_action :set_task, only: [:show, :claim, :done]
 
     def index
         if params[:sort] === "recent"
-            @clients = User.includes(:orders).order("orders.created_at DESC")
+            @tasks = Task.unclaimed.incomplete.order("created_at DESC")
         else
-            @clients = User.near([current_user.latitude, current_user.longitude], 200000)
+            @tasks = Task.unclaimed.incomplete.near([current_user.latitude, current_user.longitude], 200000)
         end
     end
 
@@ -21,15 +22,15 @@ class TasksController < ApplicationController
             flash[:notice] = "Marked as done"
         end
         @task.save
-        redirect_to volunteer_task_path(@task)
+        redirect_to task_path(@task)
     end
 
-    def update
-        if @task.assignee === current_user
-            @task.assignee = nil
+    def claim
+        if @task.user === current_user
+            @task.user = nil
             flash[:notice] = "Task released"
         else
-            @task.assignee = current_user
+            @task.user = current_user
             flash[:notice] = "Assigned to you"
         end
         @task.save
@@ -39,6 +40,6 @@ class TasksController < ApplicationController
     private
 
     def set_task
-        @task = Order.find(params[:id] || params[:task_id])
+        @task = Task.find(params[:id] || params[:task_id])
     end
 end

@@ -1,31 +1,26 @@
 .tile-list{
+    margin: 0px;
     list-style: none;
     padding-left: 0;
+}
 
-    &__tile{
-        background: $white;
-        border-radius: 5px;
+.tile{
+    background: $white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 4px 20px transparentize($black, 0.9);
+    margin-bottom: 15px;
+    position: relative;
+
+    &:last-child{
+        margin-bottom: 0px;
+    }
+
+    &--clickable{
         border-left: 5px solid $bright-blue;
-        padding: 20px;
-        box-shadow: 0px 4px 20px transparentize($black, 0.9);
-        margin-bottom: 15px;
-        position: relative;
         transition: box-shadow 0.1s ease-out;
-
         &:hover{
             box-shadow: 0px 4px 20px transparentize($black, 0.8);   
-        }
-
-        &--urgent{
-            border-color: $red;
-        }
-
-        *:first-child{
-            margin-top: 0;
-        }
-
-        *:last-child{
-            margin-bottom: 0;
         }
 
         a{
@@ -41,7 +36,7 @@
                 display: block;
                 border-radius: 5px;
             }
-
+    
             &:focus{
                 outline: none;
                 &:before{
@@ -49,5 +44,18 @@
                 }
             }
         }
+    }
+
+    &--urgent{
+        border-color: $red;
+    }
+
+
+    *:first-child{
+        margin-top: 0;
+    }
+
+    *:last-child{
+        margin-bottom: 0;
     }
 }

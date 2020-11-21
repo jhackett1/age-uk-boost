@@ -4,10 +4,13 @@
 @import "vars";
 @import "globals";
 @import "navigation";
-@import "tile-list";
+@import "tile";
 @import "button";
 @import "tag";
 @import "flash";
+@import "field";
+@import "shortcut-nav";
+@import "map";
 
 .container{
     margin-left: auto;
@@ -43,6 +46,16 @@
 
 .app-wrapper{
     flex: 1;
-    padding: 15px 3vw;
-    overflow-y: auto;
+    padding: 0px 3vw;
+
+    *:first-child{
+        margin-top: 0px;
+    }
+}
+
+.subheading{
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }

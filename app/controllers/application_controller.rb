@@ -1,23 +1,18 @@
 class ApplicationController < ActionController::Base
-    # before_action :authenticate_user!
-    # before_action :volunteers_only
 
-    protected
+    include Passwordless::ControllerHelpers
 
-    def volunteers_only
-        unless current_user.role.name === "volunteer"
-            redirect_to root_path
-        end
+    helper_method :current_user
+  
+    private
+  
+    def current_user
+      @current_user ||= authenticate_by_session(User)
     end
-
-    def after_sign_in_path_for(resource)
-        if current_user.role.name === "organiser"
-            organiser_root_path 
-        elsif current_user.role.name === "volunteer"
-            volunteer_root_path 
-        else
-            root_path
-        end
+  
+    def authenticate_user!
+      return if current_user
+      save_passwordless_redirect_location!(User)
+      redirect_to auth.sign_in_path
     end
-
 end

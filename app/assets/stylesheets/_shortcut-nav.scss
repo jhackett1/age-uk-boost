@@ -1,0 +1,14 @@
+.shortcut-nav{
+    margin-bottom: 25px;
+    a{
+        display: inline-block;
+        margin-right: 7px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: $black;
+        &:focus{
+            background: $yellow;
+            outline: 3px solid $yellow;
+        }
+    }
+}

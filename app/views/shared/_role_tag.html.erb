@@ -1,9 +1,0 @@
-
-
-<% if role.name === "organiser" %>
-    <strong class="govuk-tag govuk-tag--turquoise "><%= role.name.humanize %></strong>
-<% elsif role.name === "volunteer" %>
-    <strong class="govuk-tag govuk-tag--pink "><%= role.name.humanize %></strong>
-<% else %>
-    <strong class="govuk-tag govuk-tag--blue "><%= role.name.humanize %></strong>
-<% end %>

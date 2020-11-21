@@ -1,29 +1,27 @@
 <h1><%= @task.name %></h1>
 
 <p>
-    <%= rough_distance(@task.client.distance_to([current_user.latitude, current_user.longitude])) %> 
+    <%= rough_distance(@task.distance_to([current_user.latitude, current_user.longitude])) %> 
     | 
     <%= time_ago_in_words(@task.created_at).humanize %> ago
 </p>
 
-<% if @task.assignee === current_user %>
+<% if @task.user === current_user %>
 
-    <p><%= @task.client.first_name %> <%= @task.client.last_name %></p>
+    <p><%= @task.name %></p>
 
-    <p><%= @task.client.email %></p>
-    <p><%= @task.client.phone%></p>
+    <p><%= @task.email %></p>
+    <p><%= @task.phone%></p>
 
-    <p><%= @task.client.address %></p>
-    <p><%= @task.client.postcode %></p>
+    <p><%= @task.address %></p>
+    <p><%= @task.postcode %></p>
 
-    <% if @task.completed_at %>
-        <%= link_to "Mark as not done", volunteer_task_done_path(@task), method: "POST", class: "button button--outline" %>
-    <% else %>
-        <%= link_to "Mark as done", volunteer_task_done_path(@task), method: "POST", class: "button" %>
-        <%= link_to "Unclaim", volunteer_task_path(@task), method: "PATCH", class: "button button--outline", data: { confirm: "Are you sure you want to release this task? It will be available for others to claim" } %>
+    <% unless @task.completed_at %>
+        <%= link_to "Mark as done", task_done_path(@task), method: :post, class: "button" %>
+        <%= link_to "Unclaim", task_claim_path(@task), method: :post, class: "button button--outline", data: { confirm: "Are you sure you want to release this task? It will be available for others to claim" } %>
     <% end %>
 
 <% else %>
     <p>Claim this task to see more details.</p>
-    <%= link_to "Claim task", volunteer_task_path(@task), method: "PATCH", class: "button" %>
+    <%= link_to "Claim task", task_claim_path(@task), method: :post, class: "button" %>
 <% end %>

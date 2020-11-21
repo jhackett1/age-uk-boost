@@ -1,7 +1,10 @@
 class User < ApplicationRecord
-  
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+
+  include TwilioWrapper
+
+  def notify
+    send_sms(self.phone)
+  end
 
   passwordless_with :email
 
@@ -9,13 +12,10 @@ class User < ApplicationRecord
   after_validation :geocode
 
   # associations
-  has_many :tasks, foreign_key: "assignee_id", class_name: "Order"
+  has_many :tasks
 
   # validations
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :phone, presence: true
-  validates :address, presence: true
-  validates :postcode, presence: true
   validate :postal_code_is_valid
 
   # methods

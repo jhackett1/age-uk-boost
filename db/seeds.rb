@@ -1,26 +1,41 @@
-Order.delete_all
-User.delete_all
-Role.delete_all
-Service.delete_all
+require 'faker'
 
-Role.create([
-    { name: "volunteer" },
-    { name: "organiser" },
-    { name: "client" }
-])
+Task.delete_all
+User.delete_all
 
 User.create({
     email: "jaye.hackett@gmail.com",
-    password: "password",
     first_name: "Jaye",
     last_name: "Hackett",
-    role: Role.find_by({ name: "organiser" }),
     address: "459 Bordesley Green East",
     postcode: "B33 8PP",
-    phone: "0777 777 7777"
+    phone: "0777 777 7777",
+    admin: true
 })
 
-Service.create([
-    { name: "food delivery" },
-    { name: "check in" }
-])
+Faker::Config.locale = 'en-GB'
+
+postcodes = [
+    "SE25 4DP",
+    "W12 0PB",
+    "E3 2DL",
+    "W10 5DB",
+    "SW12 8LL",
+    "E6 3QS",
+    "SE2 9PN",
+    "SW3 4LQ",
+    "NW3 2EA",
+    "N2 9QE"
+]
+
+10.times do
+    Task.create({
+        name: Faker::Name.name,
+        special_request: Faker::Lorem.paragraph(sentence_count: 3),
+        address: Faker::Address.street_address,
+        postcode: postcodes.sample,
+        email: Faker::Internet.email,
+        phone: Faker::PhoneNumber.phone_number,
+        urgent: Faker::Boolean.boolean(true_ratio: 0.2)
+    })
+end

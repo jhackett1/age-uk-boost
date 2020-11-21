@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  special_request: MyText
+  user: one
+  completed_at: 2020-11-21 12:37:15
+  address: MyString
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  email: MyString
+  phone: MyString
+
+two:
+  name: MyString
+  special_request: MyText
+  user: two
+  completed_at: 2020-11-21 12:37:15
+  address: MyString
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  email: MyString
+  phone: MyString

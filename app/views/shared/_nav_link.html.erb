@@ -1,8 +1,17 @@
-<li class="govuk-!-margin-bottom-2">
-    <%= link_to_unless_current link_text, link_path, class: "govuk-link govuk-link--no-visited-state" do %>
-        
-        <a href="<%= link_path %>" class="govuk-link govuk-link--no-visited-state">
-            <strong><%= link_text %></strong>
-        </a>
+<li>
+    <% if url_for === link_path %>
+
+        <%= link_to link_path, class: "app-navigation__active" do %>
+            <%= svg "#{image_path}.svg" %>
+            <%= link_text %>
+        <% end %>
+
+    <% else %>
+
+        <%= link_to link_path do %>
+            <%= svg "#{image_path}.svg" %>
+            <%= link_text %>
+        <% end %>
+
     <% end %>
 </li>

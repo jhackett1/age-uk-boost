@@ -10,9 +10,9 @@ module ApplicationHelper
         if distance < 1
           "Less than a mile away"
         elsif (1 < distance) && (distance < 2)
-          "About a mile away"
+          "1 mile away"
         else
-          "About #{distance.round} miles away"
+          "#{distance.round} miles away"
         end
       end
 

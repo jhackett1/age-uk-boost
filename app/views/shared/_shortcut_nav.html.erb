@@ -1,0 +1,9 @@
+<nav class="shortcut-nav">
+    <% if params[:map].present? %>
+        <%= link_to "List view", tasks_path %>
+        <strong><%= link_to "Map view", tasks_path(map: true) %></strong>
+    <% else %>
+        <strong><%= link_to "List view", tasks_path %></strong>
+        <%= link_to "Map view", tasks_path(map: true) %>
+    <% end %>
+</nav>
