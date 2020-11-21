@@ -1,24 +1,8 @@
 class Order < ApplicationRecord
 
-  belongs_to :client, foreign_key: "client_id", class_name: "User", inverse_of: :orders
   belongs_to :assignee, foreign_key: "assignee_id", class_name: "User", optional: true
 
-  has_and_belongs_to_many :services
-  has_and_belongs_to_many :receipts
-
   paginates_per 10
-
-  def name
-    services.map{ |s| s.name }.join(", ").humanize
-  end
-
-  def total
-    total = 0
-    services.each do |s|
-      total += s.price
-    end
-    total
-  end
 
   filterrific(
     default_filter_params: { sorted_by: "created_at_desc" },
@@ -29,11 +13,15 @@ class Order < ApplicationRecord
     ]
   )
 
-  def self.options_for_sorted_by
+  def options_for_sorted_by
     [
       ["Oldest", "created_at_asc"],
       ["Newest", "created_at_desc"],
     ]
+  end
+
+  def name
+    services.map{ |s| s.name }.join(", ").humanize
   end
 
   scope :sorted_by, ->(sort_option) {

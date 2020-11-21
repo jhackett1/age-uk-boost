@@ -1,13 +1,13 @@
-@import "volunteer/normalise";
+@import "normalise";
 @import "leaflet/dist/leaflet.css";
 
-@import "volunteer/vars";
-@import "volunteer/globals";
-@import "volunteer/navigation";
-@import "volunteer/tile-list";
-@import "volunteer/button";
-@import "volunteer/tag";
-@import "volunteer/flash";
+@import "vars";
+@import "globals";
+@import "navigation";
+@import "tile-list";
+@import "button";
+@import "tag";
+@import "flash";
 
 .container{
     margin-left: auto;

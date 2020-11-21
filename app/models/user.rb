@@ -3,38 +3,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders, foreign_key: "client_id", class_name: "Order", inverse_of: :client
+  passwordless_with :email
+
+  geocoded_by :whole_address
+  after_validation :geocode
+
+  # associations
   has_many :tasks, foreign_key: "assignee_id", class_name: "Order"
-  has_many :receipts
-  belongs_to :role
 
-  accepts_nested_attributes_for :orders
-
-  validates :email, presence: true
+  # validations
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :phone, presence: true
   validates :address, presence: true
   validates :postcode, presence: true
-
   validate :postal_code_is_valid
 
-  geocoded_by :whole_address
-  
-  after_validation :geocode
-
-  include PgSearch::Model
-  
-  pg_search_scope :search, against: [
-      :email, 
-      :first_name, 
-      :last_name, 
-      :address, 
-      :postcode, 
-      :phone
-    ],
-    using: {
-      tsearch: { prefix: true }
-    }
-
+  # methods
   def postal_code_is_valid
       parsed = UKPostcode.parse(postcode)
       unless parsed.full_valid?
@@ -50,5 +34,6 @@ class User < ApplicationRecord
     [address, postcode, "UK"].compact.join(', ')
   end
 
+  # scopes
   scope :has_role, -> (name){ joins(:role).where("roles.name = ?", name)}
 end

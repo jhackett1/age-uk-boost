@@ -1,4 +1,4 @@
-class Volunteer::TasksController < Volunteer::BaseController
+class TasksController < ApplicationController
     before_action :set_task, only: [:show, :update, :done]
 
     def index

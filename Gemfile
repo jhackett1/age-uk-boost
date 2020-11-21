@@ -33,11 +33,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-gem 'stripe'
 gem 'uk_postcode'
 gem 'geocoder'
 gem 'webpacker'
-
-gem 'filterrific'
-gem 'pg_search'
 gem 'kaminari'
+gem 'administrate'
+gem 'filterrific'
+gem 'passwordless'

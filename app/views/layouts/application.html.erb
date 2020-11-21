@@ -1,101 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AgeUk</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    </head>
+    <body class="app-layout">
 
-    <title>AgeUk</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'organiser', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b0c0c"> 
-  </head>
-
-  <body class="govuk-template__body ">
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
-    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
-    <header class="auk-header" role="banner" data-module="govuk-header">
-      <div class="govuk-width-container auk-header__inner">
-        <a href="/" class="auk-header__masthead">
-          <%= image_tag "ageuk.png" %>
-        </a>
-
-        <nav class="auk-header__navigation govuk-!-font-size-19">
-          <ul aria-label="Navigation menu">
-            <% if current_user.present? %>
-              <li>
-                <strong><%= link_to current_user.display_name, edit_user_registration_path, class: "govuk-link govuk-link--no-visited-state" %></strong>
-              </li>
-              <li>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "govuk-link govuk-link--no-visited-state" %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to "Log in", user_session_path, class: "govuk-link govuk-link--no-visited-state" %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-
-
-    <div class="govuk-width-container ">
-
-    <div class="govuk-phase-banner">
-  <p class="govuk-phase-banner__content">
-    <strong class="govuk-tag govuk-phase-banner__content__tag">
-      alpha
-    </strong>
-    <span class="govuk-phase-banner__text">
-      This is a new service.
-    </span>
-  </p>
-</div>
-
-
-      <div class="govuk-main-wrapper auk-layout">
-      
-        <%= render "shared/nav" %>
-        
-        <main class="auk-layout__pane" id="main-content" role="main">
-
-          <% if flash[:notice].present? %>
-            <div class="auk-flash">
-              <p><%= flash[:notice] %></p>
+        <header class="app-header" role="banner">
+            <div class="container">
+                <%= link_to volunteer_root_path do %>
+                    <%= image_tag "ageuk.png" %>
+                <% end %>
             </div>
-          <% end %>
-          
-          <% if flash[:alert].present? %>
-            <div class="auk-flash auk-flash--alert">
-              <p><%= flash[:alert] %></p>
-            </div>
-          <% end %>
+        </header>
 
-          <%= yield %>
+        <% if flash[:notice].present? %>
+            <div class="flash">
+                <div class="container">
+                    <p><%= flash[:notice] %></p>
+                </div>
+            </div>
+        <% end %>
+
+        <% if flash[:alert].present? %>
+            <div class="flash flash--alert">
+                <div class="container">
+                    <p><%= flash[:alert] %></p>
+                </div>
+            </div>
+        <% end %>
+
+        <main id="main-content" role="main" class="app-wrapper">
+            <div class="container">
+                <%= yield %>
+            </div>
         </main>
-      
-      </div>
-    </div>
 
-    <footer class="govuk-footer " role="contentinfo">
-      <div class="govuk-width-container ">
-        <div class="govuk-footer__meta">
-          <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-            <span class="govuk-footer__licence-description">
-              Age UK, Tavis House, 1-6 Tavistock Square, London WC1H 9NA. Registered charity number 1128267
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
+        <%= render "shared/volunteer/nav" %>
 
-    <%= javascript_pack_tag 'main', 'data-turbolinks-track': 'reload' %>
-  </body>
+        <%= javascript_pack_tag 'main', 'data-turbolinks-track': 'reload' %>
+    </body>
 </html>
