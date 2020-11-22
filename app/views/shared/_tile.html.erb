@@ -1,4 +1,4 @@
-<li class="tile tile--clickable <%= "tile--urgent" if o.urgent %>">
+<li class="tile tile--clickable <%= "tile--urgent" if o.urgent %> <%= "tile--completed" if o.completed_at %>">
     <h2 class="tile__title">
         <% if o.urgent%>
             <strong class="tag">

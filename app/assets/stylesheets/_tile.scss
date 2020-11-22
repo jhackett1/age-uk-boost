@@ -57,6 +57,14 @@
         }
     }
 
+    &--completed{
+        background: transparentize($white, 0.75);
+        .tile__meta,
+        a{
+            color: transparentize($black, 0.25);
+        }
+    }
+
     &--urgent{
         border-color: $red;
     }

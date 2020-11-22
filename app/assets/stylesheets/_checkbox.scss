@@ -1,7 +1,9 @@
 .checkbox{
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
-    padding: 15px 0px;
+    min-height: 47px;
+
 
     &:focus-within{
         label:before{

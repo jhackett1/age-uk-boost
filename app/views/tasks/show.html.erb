@@ -2,6 +2,17 @@
     <%= @task.name %> | 
 <% end %>
 
+<% content_for :pre_content do %>
+    <% if @task.completed_at %>
+        <div class="flash">
+            <div class="container">
+                <p>You’ve marked this task as done. It will disappear from your planner shortly.
+                <p>Made a mistake? <%= link_to "Mark as incomplete", task_done_path(@task), method: :post %></p>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
 <div class="tile">
     <h1><%= @task.name %></h1>
     <p class="tile__meta">
