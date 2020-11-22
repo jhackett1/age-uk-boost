@@ -42,6 +42,17 @@
     img{
         max-width: 120px;
     }
+
+    &--centred{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 3vw;
+        img{
+            max-width: 200px;
+        }
+
+    }
 }
 
 .app-wrapper{

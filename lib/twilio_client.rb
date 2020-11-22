@@ -12,7 +12,7 @@ module TwilioClient
         else
             print "\n\n------\n\n"
             print "TO: #{to}";
-            print "MESSAGE: #{message}";
+            print "MESSAGE: #{body}";
             print "\n\n------\n\n"
         end
     end

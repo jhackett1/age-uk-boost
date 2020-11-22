@@ -11,8 +11,8 @@
         <%= favicon_link_tag "favicon.ico" %>
     </head>
     <body class="app-layout">
-
-        <header class="app-header" role="banner">
+    
+        <header class="app-header <%= "app-header--centred" if controller_path === "auth" %>" role="banner">
             <div class="container">
                 <%= link_to "/" do %>
                     <%= image_tag "ageuk.png" %>
