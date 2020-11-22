@@ -17,7 +17,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'dotenv-rails'
-  gem 'faker'
 end
 
 group :development do
@@ -34,6 +33,8 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'faker'
 
 gem 'uk_postcode'
 gem 'geocoder'
