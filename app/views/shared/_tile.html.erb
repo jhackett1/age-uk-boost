@@ -1,5 +1,5 @@
 <li class="tile tile--clickable <%= "tile--urgent" if o.urgent %>">
-    <h2>
+    <h2 class="tile__title">
         <% if o.urgent%>
             <strong class="tag">
                 Urgent
@@ -7,9 +7,12 @@
         <% end %>
         <%= link_to o.name, task_path(o) %>
     </h2>
-    <p>
-        <%= rough_distance(o.distance_to([current_user.latitude, current_user.longitude])) %> 
-        | 
+    <p class="tile__meta">
+        <%= image_tag "calendar.svg", class: "tile__icon", aria: { hidden: true } %>
         <%= time_ago_in_words(o.created_at).humanize %> ago
+    </p>
+    <p class="tile__meta">
+        <%= image_tag "distance.svg", class: "tile__icon", aria: { hidden: true } %>
+        <%= rough_distance(o.distance_to([current_user.latitude, current_user.longitude])) %> 
     </p>
 </li>

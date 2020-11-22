@@ -7,7 +7,7 @@
     <p><%= @me.phone %></p>
 
     <% if current_user.admin? %>
-        <p><%= link_to "Go to admin dashboard", admin_root_path %></p>
+        <p><%= link_to "Go to admin dashboard", admin_root_path, class: "styled-link" %></p>
     <% end %>
 </div>
 
@@ -37,12 +37,12 @@
     <div class="tile">
         <div class="field checkbox">
             <%= f.check_box :notify_about_new_tasks %>
-            <%= f.label :notify_about_new_tasks %>
+            <%= f.label :notify_about_new_tasks, "Tell me when new tasks are available to claim" %>
         </div>
 
         <div class="field checkbox">
             <%= f.check_box :notify_about_due_tasks %>
-            <%= f.label :notify_about_due_tasks %>
+            <%= f.label :notify_about_due_tasks, "Remind me when my claimed tasks are due" %>
         </div>
     </div>
 

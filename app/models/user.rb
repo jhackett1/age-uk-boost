@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  phony_normalize :phone, default_country_code: 'GB'
+  phony_normalize :phone
 
   geocoded_by :whole_address
   after_validation :geocode

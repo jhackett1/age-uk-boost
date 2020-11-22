@@ -2,6 +2,7 @@
     margin: 0px;
     list-style: none;
     padding-left: 0;
+    margin-bottom: 20px;
 }
 
 .tile{
@@ -60,10 +61,27 @@
         border-color: $red;
     }
 
+    &__title{
+        margin-bottom: 10px;
+    }
+
     &__intro{
         margin-top: 0;
         margin-bottom: 25px;
         font-size: 1.1rem;
+    }
+
+    &__meta{
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0px;
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+
+    &__icon{
+        margin-right: 7px;
     }
 
 

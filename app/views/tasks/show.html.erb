@@ -2,30 +2,51 @@
     <%= @task.name %> | 
 <% end %>
 
-<h1><%= @task.name %></h1>
+<div class="tile">
+    <h1><%= @task.name %></h1>
+    <p class="tile__meta">
+        <%= image_tag "calendar.svg", class: "tile__icon", aria: { hidden: true } %>
+        <%= time_ago_in_words(@task.created_at).humanize %> ago
+    </p>
+    <p class="tile__meta">
+        <%= image_tag "distance.svg", class: "tile__icon", aria: { hidden: true } %>
+        <%= rough_distance(@task.distance_to([current_user.latitude, current_user.longitude])) %> 
+    </p>
+</div>
 
-<p>
-    <%= rough_distance(@task.distance_to([current_user.latitude, current_user.longitude])) %> 
-    | 
-    <%= time_ago_in_words(@task.created_at).humanize %> ago
-</p>
+<h2 class="subheading">Special request</h2>
+
+<div class="tile">
+    <p><%= @task.special_request %></p>
+</div>
 
 <% if @task.user === current_user %>
 
-    <p><%= @task.name %></p>
+    <h2 class="subheading">Contact details</h2>
 
-    <p><%= @task.email %></p>
-    <p><%= @task.phone%></p>
-
-    <p><%= @task.address %></p>
-    <p><%= @task.postcode %></p>
+    <div class="tile">
+        <p>
+            <%= @task.address %><br/>
+            <%= @task.postcode %><br/>
+            <%= link_to "Get directions", "https://www.google.com/maps/search/#{@task.whole_address}", class: "styled-link" %>
+            
+        </p>
+    
+        <p>
+            <%= @task.email %><br/>
+            <%= @task.phone%><br/>
+            <%= link_to "Call now", "tel:#{@task.phone}", class: "styled-link" %>
+        </p>
+    </div>
 
     <% unless @task.completed_at %>
         <%= link_to "Mark as done", task_done_path(@task), method: :post, class: "button" %>
-        <%= link_to "Unclaim", task_claim_path(@task), method: :post, class: "button button--outline", data: { confirm: "Are you sure you want to release this task? It will be available for others to claim" } %>
+        <%= link_to "I can't complete this task", task_claim_path(@task), method: :post, class: "button button--outline", data: { confirm: "Are you sure you want to release this task? It will be available for others to claim" } %>
     <% end %>
 
 <% else %>
+
     <p>Claim this task to see more details.</p>
-    <%= link_to "Claim task", task_claim_path(@task), method: :post, class: "button" %>
+
+    <%= link_to "Claim this task", task_claim_path(@task), method: :post, class: "button" %>
 <% end %>

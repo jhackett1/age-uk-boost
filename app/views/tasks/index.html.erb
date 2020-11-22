@@ -2,15 +2,19 @@
     Available tasks | 
 <% end %>
 
-<h1 class="visually-hidden">Available tasks</h1>
-
-<% form_tag tasks_path, method: "get", onchange: "this.submit()" do %>
-    <%# label_tag :sort, "Sort by", class: "visually-hidden" %>
-    <%# select_tag :sort, options_for_select([
-        ["Nearest", "nearest"],
-        ["Most recent", "recent"]
-    ], params[:sort]) %>
+<%= content_for :header do %>
+    <% unless params[:map].present? %>
+        <% form_tag tasks_path, method: "get", onchange: "this.submit()" do %>
+            <%= label_tag :sort, "Sort by", class: "visually-hidden" %>
+            <%= select_tag :sort, options_for_select([
+                ["Nearest", "nearest"],
+                ["Most recent", "recent"]
+            ], params[:sort]) %>
+        <% end %>
+    <% end %>
 <% end %>
+
+<h1 class="visually-hidden">Available tasks</h1>
 
 <%= content_for :pre_content do %>
     <%= render "shared/shortcut_nav" %>
