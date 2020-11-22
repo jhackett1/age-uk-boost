@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_by_session
-      current_session = AuthSession.find_by(id: session[:auth_session_id])
+      current_session = AuthSession.before_timeout.find_by(id: session[:auth_session_id])
+      print current_session.inspect
       if current_session
         current_session.user
       end

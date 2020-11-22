@@ -10,6 +10,7 @@ class AuthSession < ApplicationRecord
 
   scope :claimable, -> { where(claimed_at: nil) }
   scope :unexpired, -> { where("expires_at > ?", Time.current) }
+  scope :before_timeout, -> { where("timeout_at > ?", Time.current) }
 
   def token
     @token ||= Password.new(token_digest)
