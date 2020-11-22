@@ -16,10 +16,8 @@ class TasksController < ApplicationController
     def done
         if @task.completed_at
             @task.completed_at = nil
-            flash[:notice] = "Marked as not done"
         else
             @task.completed_at = Time.now
-            flash[:notice] = "Marked as done"
         end
         @task.save
         redirect_to task_path(@task)
@@ -28,10 +26,10 @@ class TasksController < ApplicationController
     def claim
         if @task.user === current_user
             @task.user = nil
-            flash[:notice] = "Task released"
+            flash[:notice] = "You've released this task for others to claim."
         else
             @task.user = current_user
-            flash[:notice] = "Assigned to you"
+            flash[:notice] = "You've claimed this task. Thank you!"
         end
         @task.save
         render :show
