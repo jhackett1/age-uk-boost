@@ -1,6 +1,8 @@
 class AuthController < ApplicationController
     before_action :set_phone, only: [:create, :show]
 
+    include TwilioClient
+
     def new
     end
 
