@@ -1,24 +1,14 @@
-# README
+To do:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- tidy up styles and layout
 
-Things you may want to cover:
+- style nearest/most recent picker
 
-* Ruby version
+- make it so that the claim and done paths don't behave strangely when refreshing the page
 
-* System dependencies
+- redesign the tasks#show action so that users can only see tasks they're allowed to
 
-* Configuration
+- make a background job to remind users about due tasks
 
-* Database creation
+- write google sheet import script
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
