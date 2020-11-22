@@ -38,6 +38,7 @@ class TasksController < ApplicationController
     private
 
     def set_task
+        # TODO: refactor this so it can only return tasks the user is allowed to see
         @task = Task.find(params[:id] || params[:task_id])
     end
 end
