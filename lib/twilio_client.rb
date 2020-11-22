@@ -1,12 +1,12 @@
 require 'twilio-ruby'
 
-module TwilioWrapper
+module TwilioClient
 
-    def send_sms(to)
+    def send_sms(to, body)
         client.messages.create(
             from: ENV["TWILIO_FROM_NUMBER"] || "+14235464722",
             to: to,
-            body: "Example SMS message — http://foo.com"
+            body: body
         )
     end
 

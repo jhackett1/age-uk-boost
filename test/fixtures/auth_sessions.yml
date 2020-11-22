@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  claimed_at: 2020-11-22 12:18:29
+  expires_at: 2020-11-22 12:18:29
+  timeout_at: 2020-11-22 12:18:29
+  user: one
+  user_agent: MyText
+
+two:
+  token: MyString
+  claimed_at: 2020-11-22 12:18:29
+  expires_at: 2020-11-22 12:18:29
+  timeout_at: 2020-11-22 12:18:29
+  user: two
+  user_agent: MyText

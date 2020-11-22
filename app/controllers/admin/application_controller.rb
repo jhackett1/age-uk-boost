@@ -8,10 +8,9 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin!
 
-    include Passwordless::ControllerHelpers
-
     def authenticate_admin!
-      return if authenticate_by_session(User).admin === true
+      current_session = AuthSession.find_by(id: session[:auth_session_id])
+      return if current_session && current_session.user.admin === true
       flash[:notice] = "You don't have permission to access the admin dashboard"
       redirect_to root_path
     end

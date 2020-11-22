@@ -11,7 +11,7 @@ class UserDashboard < Administrate::BaseDashboard
     # passwordless_sessions: Field::HasMany.with_options(class_name: "Passwordless::Session"),
     tasks: Field::HasMany,
     id: Field::Number,
-    email: Field::String,
+    # email: Field::String,
     # encrypted_password: Field::String,
     # reset_password_token: Field::String,
     # reset_password_sent_at: Field::DateTime,
@@ -25,6 +25,7 @@ class UserDashboard < Administrate::BaseDashboard
     phone: Field::String,
     latitude: Field::Number.with_options(decimals: 8),
     longitude: Field::Number.with_options(decimals: 8),
+    admin: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,11 +37,11 @@ class UserDashboard < Administrate::BaseDashboard
   id
   first_name
   last_name
-  email
   phone
   address
   postcode
   tasks
+  admin
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -48,7 +49,6 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   tasks
   id
-  email
   created_at
   updated_at
   first_name
@@ -58,6 +58,7 @@ class UserDashboard < Administrate::BaseDashboard
   phone
   latitude
   longitude
+  admin
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -65,12 +66,12 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   tasks
-  email
   first_name
   last_name
   address
   postcode
   phone
+  admin
   ].freeze
 
   # COLLECTION_FILTERS
@@ -89,6 +90,6 @@ class UserDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(user)
-    user.email
+    user.display_name
   end
 end

@@ -1,0 +1,22 @@
+<% content_for :title do %>
+    Enter the code | 
+<% end %>
+
+<div class="tile tile--narrow">
+    <h1>Enter the code you were sent</h1>
+    <p>If your phone number matches your records, you'll get an SMS message.</p>
+    <p>It will be valid for <strong>10 minutes</strong>.</p>
+
+    <%= form_tag "/sign-in/token" do |f| %>
+
+        <%= hidden_field_tag :phone, @phone %>
+
+        <div class="field field--code">
+            <%= label_tag :token %>
+            <%= text_field_tag :token, nil, maxlength: 6, inputmode: "numeric", pattern: "[0-9]*", autocomplete: "one-time-code" %>
+        </div>
+
+        <%= submit_tag "Continue", class: "button" %>
+    
+    <% end %>
+</div>  

@@ -1,15 +1,11 @@
 .flash{
     padding: 15px;
-    background: $bright-blue;
+    background: transparentize($yellow, 0.9);
+    border-top: 1px solid $yellow;
+    border-bottom: 1px solid $yellow;
     p{
         margin: 0;
-        color: $white;
+        color: darken($yellow, 50);
     }
 
-    &--alert{
-        background: $yellow;
-        p{
-            color: $black;
-        }
-    }
 }

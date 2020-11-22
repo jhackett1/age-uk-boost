@@ -1,21 +1,18 @@
 class User < ApplicationRecord
 
-  include TwilioWrapper
-
-  def notify
-    send_sms(self.phone)
-  end
-
-  passwordless_with :email
+  phony_normalize :phone, default_country_code: 'GB'
 
   geocoded_by :whole_address
   after_validation :geocode
 
   # associations
   has_many :tasks
+  has_one :auth_session
 
   # validations
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :phone, presence: true, uniqueness: { case_sensitive: false }
   validate :postal_code_is_valid
 
   # methods
@@ -27,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def display_name
-    first_name + " " + last_name
+    first_name + " " + last_name || phone
   end
 
   def whole_address

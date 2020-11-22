@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, p, li, label, input{
     color: $black;
 }
 
+p{
+    line-height: 1.5;
+}
+
 body{
     background: $pale;
 }

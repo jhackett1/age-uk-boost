@@ -40,7 +40,13 @@ en:
             base:
               invalid_postcode: "Make sure you give a valid postcode, with a space in the middle."
 
+    models:
+      auth_session:
+        one: Session
+        other: Sessions
+
   helpers:
     label:
       task:
         user: Claimed by
+

@@ -4,12 +4,11 @@ Task.delete_all
 User.delete_all
 
 User.create({
-    email: "jaye.hackett@gmail.com",
     first_name: "Jaye",
     last_name: "Hackett",
+    phone: ENV["ADMIN_PHONE"],
     address: "459 Bordesley Green East",
     postcode: "B33 8PP",
-    phone: "0777 777 7777",
     admin: true
 })
 

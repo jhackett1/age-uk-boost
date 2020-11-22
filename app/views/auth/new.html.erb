@@ -1,0 +1,16 @@
+<% content_for :title do %>
+    Sign in | 
+<% end %>
+
+<%= form_with url: sign_in_path, local: true, html: { class: "tile tile--narrow" } do |f| %>
+
+  <p class="tile__intro">To sign in, enter the mobile phone number you use with Age UK.</p>
+
+  <div class="field">
+    <%= f.label :phone, "Mobile number" %>
+    <%= f.text_field :phone, required: true %>
+  </div>
+
+  <%= f.submit "Continue", class: "button" %>
+  
+<% end %>

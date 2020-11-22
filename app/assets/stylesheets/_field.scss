@@ -1,6 +1,14 @@
 .field{
     margin-bottom: 25px;
 
+    &--code{
+        input{
+            max-width: 150px;
+            font-size: 1.5rem !important;
+            letter-spacing: 1px;
+        }
+    }
+
     label{
         display: block;
         margin-bottom: 5px;

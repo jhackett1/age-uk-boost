@@ -1,6 +1,6 @@
 <div class="tile">
     <h1><%= @me.display_name %></h1>
-    <p><%= @me.email %></p>
+    <p><%= @me.phone %></p>
 
     <% if current_user.admin? %>
         <p><%= link_to "Go to admin dashboard", admin_root_path %></p>
@@ -10,44 +10,40 @@
 
 <%= form_for @me, url: profile_path do |f| %>
 
-<div class="tile">
     <%= render "shared/errors", model: @me %>
 
-    <div class="field">
-        <%= f.label :phone %>
-        <%= f.text_field :phone, aria: { describedby: "phone-hint"} %>
-        <p class="field__hint" id="phone-hint">To send you the SMS notifications you choose</p>
+    <h2 class="subheading">Address</h2>
+
+    <div class="tile">
+
+        <div class="field">
+            <%= f.label :address, "Street address" %>
+            <%= f.text_field :address %>
+        </div>
+
+        <div class="field">
+            <%= f.label :postcode %>
+            <%= f.text_field :postcode, aria: { describedby: "postcode-hint"} %>
+            <p class="field__hint" id="postcode-hint">To show you nearby tasks</p>
+        </div>
     </div>
 
-    <div class="field">
-        <%= f.label :address %>
-        <%= f.text_field :address %>
+    <h2 class="subheading">Notifications</h2>
+
+    <div class="tile">
+        <div class="field checkbox">
+            <%= f.check_box :notify_about_new_tasks %>
+            <%= f.label :notify_about_new_tasks %>
+        </div>
+
+        <div class="field checkbox">
+            <%= f.check_box :notify_about_due_tasks %>
+            <%= f.label :notify_about_due_tasks %>
+        </div>
     </div>
 
-    <div class="field">
-        <%= f.label :postcode %>
-        <%= f.text_field :postcode, aria: { describedby: "postcode-hint"} %>
-        <p class="field__hint" id="postcode-hint">To show you nearby tasks</p>
-    </div>
-</div>
-
-<h2 class="subheading">Notifications</h2>
-
-<div class="tile">
-    <div class="field checkbox">
-        <%= f.check_box :notify_about_new_tasks %>
-        <%= f.label :notify_about_new_tasks %>
-    </div>
-
-    <div class="field checkbox">
-        <%= f.check_box :notify_about_due_tasks %>
-        <%= f.label :notify_about_due_tasks %>
-    </div>
-</div>
-
-<%= f.submit "Save changes", class: "button" %>
+    <%= f.submit "Save changes", class: "button" %>
 
 <% end %>
 
-
-<%= link_to "Sign out", auth.sign_out_path, class: "button button--danger", data: { confirm: "Are you sure you want to sign out of this browser?" } %>
+<%= link_to "Sign out", sign_out_path, method: :delete, class: "button button--danger", data: { confirm: "Are you sure you want to sign out of this browser?" } %>
