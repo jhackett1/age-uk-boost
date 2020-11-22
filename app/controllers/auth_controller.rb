@@ -20,8 +20,7 @@ class AuthController < ApplicationController
 
             to = user.phone
             message = "#{token} is your verification code for Age UK"
-            # send_sms(to, message)
-            print "\n\n\n\n\n------\n\n\n\n\nYOUR CODE: #{token}\n\n\n\n\n------\n\n\n\n\n"
+            send_sms(to, message)
         end
     end
 
