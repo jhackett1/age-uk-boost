@@ -3,6 +3,7 @@
 
 @import "vars";
 @import "globals";
+@import "layout";
 @import "navigation";
 @import "tile";
 @import "button";
@@ -14,82 +15,3 @@
 @import "checkbox";
 @import "error";
 @import "no-results";
-
-.container{
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px;
-}
-
-.visually-hidden{
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-}
-
-.app-layout{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.app-header{
-    padding: 15px 3vw;
-    a:focus{
-        outline: 3px solid $yellow;
-    }
-    img{
-        max-width: 120px;
-    }
-
-    .container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &--centred{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 3vw;
-        img{
-            max-width: 200px;
-        }
-
-    }
-}
-
-.app-wrapper{
-    flex: 1;
-    padding: 0px 3vw 15px 3vw;
-    overflow-y: scroll;
-    *:first-child{
-        margin-top: 0px;
-    }
-}
-
-.subheading{
-    font-size: 1.2rem;
-    font-weight: normal;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.styled-link{
-    color: $bright-blue;
-    text-decoration: none;
-    &:hover{
-        text-decoration: underline;
-    }
-    &:focus{
-        color: $black;
-        outline: 3px solid $yellow;
-        background: $yellow;
-    }
-}
