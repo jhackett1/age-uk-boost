@@ -14,7 +14,7 @@
 <% end %>
 
 <div class="tile">
-    <h1><%= @task.name %></h1>
+    <h1 class="tile__title"><%= @task.name %></h1>
     <p class="tile__meta">
         <%= image_tag "calendar.svg", class: "tile__icon", aria: { hidden: true } %>
         <%= time_ago_in_words(@task.created_at).humanize %> ago

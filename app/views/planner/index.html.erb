@@ -5,23 +5,30 @@
 <h1 class="visually-hidden">Planner</h1>
 
 <% if @upcoming.any? %>
+
+    <h2 class="subheading">Next up</h2>
+
     <ol class="tile-list">
-        <h2 class="subheading">Next up</h2>
-        <% @upcoming.each_with_index do |t, i| %>
-            <% if i === 1 %>
-                <h2 class="subheading">Due later</h2>
-            <% end %>
+        <%= render "shared/tile", o: @upcoming.first %>
+    </ol>
+
+    <h2 class="subheading">Due later</h2>
+
+    <ol class="tile-list">
+        <% @upcoming.drop(1).each do |t| %>
             <%= render "shared/tile", o: t %>
         <% end %>
     </ol>
+
 <% else %>
     <p>There's nothing in your planner yet</p>
     <p><%= link_to "See available tasks", tasks_path, class: "button button--outline" %></p>
 <% end %>
 
+
 <% if @recently_completed.any? %>
+    <h2 class="subheading">Recently completed</h2>
     <ol class="tile-list">
-        <h2 class="subheading">Recently completed</h2>
         <% @recently_completed.each do |t| %>
             <%= render "shared/tile", o: t %>
         <% end %>

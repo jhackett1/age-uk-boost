@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="tile tile--narrow">
-    <h1>Enter the code you were sent</h1>
+    <h1 class="tile__title">Enter the code you were sent</h1>
     <p>If your phone number matches your records, you'll get an SMS message.</p>
     <p>It will be valid for <strong>10 minutes</strong>.</p>
 
@@ -12,7 +12,7 @@
         <%= hidden_field_tag :phone, @phone %>
 
         <div class="field field--code">
-            <%= label_tag :token %>
+            <%= label_tag :token, "Code" %>
             <%= text_field_tag :token, nil, maxlength: 6, inputmode: "numeric", pattern: "[0-9]*", autocomplete: "one-time-code" %>
         </div>
 

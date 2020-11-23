@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="tile">
-    <h1><%= @me.display_name %></h1>
+    <h1 class="tile__title"><%= @me.display_name %></h1>
     <p><%= @me.phone %></p>
 
     <% if current_user.admin? %>
