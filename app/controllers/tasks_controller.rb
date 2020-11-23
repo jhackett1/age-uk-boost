@@ -3,7 +3,7 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :claim, :done]
 
     def index
-        if params[:sort] === "recent"
+        if params[:sort] === "recent" || !current_user.has_coordinates?
             @tasks = Task.unclaimed.incomplete.order("created_at DESC")
         else
             @tasks = Task.unclaimed.incomplete.near([current_user.latitude, current_user.longitude], 200000)
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
             flash[:notice] = "You've claimed this task. Thank you!"
         end
         @task.save
-        render :show
+        redirect_to task_path(@task)
     end
 
     private

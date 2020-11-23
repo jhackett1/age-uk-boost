@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
     def update
         if @me.update(user_params)
+            flash[:notice] = "Your profile has been updated."
             redirect_to profile_path
         else
             render "show"
@@ -21,7 +22,6 @@ class ProfilesController < ApplicationController
 
     def user_params
         params.require(:user).permit(
-            :phone,
             :address,
             :postcode,
             :notify_about_new_tasks,

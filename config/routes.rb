@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post "done", to: "tasks#done"
   end
   resource :profile, only: [:show, :update]
+  resource :onboarding, only: [:show, :update]
 
   namespace :admin do
     root to: "tasks#index"

@@ -34,7 +34,7 @@ class AuthController < ApplicationController
                 session[:auth_session_id] = matching_session.id
                 matching_session.save
                 flash[:notice] = nil
-                redirect_to root_path
+                redirect_to onboarding_path
             else
                 flash[:notice] = "That code doesn't seem to be right. Please try again."
                 render "create"

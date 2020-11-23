@@ -1,0 +1,21 @@
+.error{
+    padding: 15px;
+    background: transparentize($red, 0.9);
+    border: 1px solid $red;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    p{
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 7px;
+        color: darken($red, 50);
+    }
+    ul{
+        color: darken($red, 50);
+        margin-bottom: 0px;
+    }
+    li{
+        padding-left: 10px;
+        color: darken($red, 50);
+    }
+}

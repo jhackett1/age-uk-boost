@@ -1,0 +1,28 @@
+<% content_for :title do %>
+    Welcome | 
+<% end %>
+
+<%= form_for @me, url: onboarding_path do |f| %>
+
+    <%= render "shared/errors", model: @me %>
+
+    <h2 class="subheading">One last thing...</h2>
+
+    <div class="tile">
+
+        <p>Because it's your first time using the app, please enter your address, so we can show you nearby tasks.</p>
+
+        <div class="field">
+            <%= f.label :address, "Street address" %>
+            <%= f.text_field :address %>
+        </div>
+
+        <div class="field">
+            <%= f.label :postcode %>
+            <%= f.text_field :postcode, aria: { describedby: "postcode-hint"} %>
+        </div>
+    </div>
+
+    <%= f.submit "Finish", class: "button" %>
+
+<% end %>

@@ -1,14 +1,12 @@
 <% if model.errors.any? %>
 
-    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-        <h2  class="govuk-error-summary__title" id="error-summary-title"><%= pluralize(model.errors.count, "error") %> stopped this <%= model.class.model_name.human.downcase %> being saved:</h2>
-        <div class="govuk-error-summary__body">
-            <ul class="govuk-list govuk-error-summary__list">
-                <% model.errors.full_messages.each do |e| %>
-                    <li><%= e %></li>
-                <% end %>
-            </ul>
-        </div>
+    <div class="error" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <p id="error-summary-title"><%= pluralize(model.errors.count, "error") %> stopped this <%= model.class.model_name.human.downcase %> being saved:</p>
+        <ul>
+            <% model.errors.full_messages.each do |e| %>
+                <li><%= e %></li>
+            <% end %>
+        </ul>
     </div>
 
 <% end %>

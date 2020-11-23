@@ -12,6 +12,7 @@ class User < ApplicationRecord
   # validations
   validates :first_name, presence: true
   validates :last_name, presence: true
+  # validates :address, presence: true
   validates :phone, presence: true, uniqueness: { case_sensitive: false }
   validate :postal_code_is_valid
 
@@ -29,6 +30,11 @@ class User < ApplicationRecord
 
   def whole_address
     [address, postcode, "UK"].compact.join(', ')
+  end
+
+  # is it safe to do geo operations on this user?
+  def has_coordinates?
+    latitude && longitude
   end
 
   # scopes

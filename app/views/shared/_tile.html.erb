@@ -11,8 +11,10 @@
         <%= image_tag "calendar.svg", class: "tile__icon", aria: { hidden: true } %>
         <%= time_ago_in_words(o.created_at).humanize %> ago
     </p>
-    <p class="tile__meta">
-        <%= image_tag "distance.svg", class: "tile__icon", aria: { hidden: true } %>
-        <%= rough_distance(o.distance_to([current_user.latitude, current_user.longitude])) %> 
-    </p>
+    <% if current_user.has_coordinates? %>
+        <p class="tile__meta">
+            <%= image_tag "distance.svg", class: "tile__icon", aria: { hidden: true } %>
+            <%= rough_distance(o.distance_to([current_user.latitude, current_user.longitude])) %> 
+        </p>
+    <% end %>
 </li>
