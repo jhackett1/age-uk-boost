@@ -32,11 +32,6 @@ class User < ApplicationRecord
     [address, postcode, "UK"].compact.join(', ')
   end
 
-  # is it safe to do geo operations on this user?
-  def has_coordinates?
-    latitude && longitude
-  end
-
   # scopes
   scope :has_role, -> (name){ joins(:role).where("roles.name = ?", name)}
 end

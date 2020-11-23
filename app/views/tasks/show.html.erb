@@ -19,7 +19,7 @@
         <%= image_tag "calendar.svg", class: "tile__icon", aria: { hidden: true } %>
         <%= time_ago_in_words(@task.created_at).humanize %> ago
     </p>
-    <% if current_user.has_coordinates? %>
+    <% if current_user.has_coordinates? && @task.has_coordinates? %>
         <p class="tile__meta">
             <%= image_tag "distance.svg", class: "tile__icon", aria: { hidden: true } %>
             <%= rough_distance(@task.distance_to([current_user.latitude, current_user.longitude])) %> 
