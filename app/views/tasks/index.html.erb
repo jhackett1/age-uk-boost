@@ -2,25 +2,25 @@
     Available tasks | 
 <% end %>
 
-<%= content_for :header do %>
-    <% unless params[:map].present? || !current_user.has_coordinates? %>
-        <% form_tag tasks_path, method: "get", onchange: "this.submit()" do %>
-            <%= label_tag :sort, "Sort by", class: "visually-hidden" %>
-            <%= select_tag :sort, options_for_select([
-                ["Nearest", "nearest"],
-                ["Most recent", "recent"]
-            ], params[:sort]), class: "sort-picker" %>
-        <% end %>
-    <% end %>
-<% end %>
-
 <h1 class="visually-hidden">Available tasks</h1>
 
-<%= content_for :pre_content do %>
-    <%= render "shared/shortcut_nav" %>
-<% end %>
-
 <% if @tasks.any? %>
+
+    <%= content_for :header do %>
+        <% unless params[:map].present? || !current_user.has_coordinates? %>
+            <% form_tag tasks_path, method: "get", onchange: "this.submit()" do %>
+                <%= label_tag :sort, "Sort by", class: "visually-hidden" %>
+                <%= select_tag :sort, options_for_select([
+                    ["Nearest", "nearest"],
+                    ["Most recent", "recent"]
+                ], params[:sort]), class: "sort-picker" %>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    <%= content_for :pre_content do %>
+        <%= render "shared/shortcut_nav" %>
+    <% end %>
 
     <% if params[:map].present? %>
         <script>
@@ -36,6 +36,9 @@
     <% end %>
     
 <% else %>
-    <p>There's no available tasks right now</p>
-    <p>Please check back later</p>
+    <div class="no-results">
+        <h2>There are no available tasks right now</h2>
+        <p>Please check back later.</p>
+        <p>Or, see <%= link_to "other ways you can help", "#", class: "styled-link" %>.</p>
+    </div>
 <% end %>

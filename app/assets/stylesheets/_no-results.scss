@@ -1,0 +1,14 @@
+.no-results{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+
+    *{
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+}
