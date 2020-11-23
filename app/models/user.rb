@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # validations
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :address, presence: true
+  
   validates :phone, presence: true, uniqueness: { case_sensitive: false }
   validate :postal_code_is_valid
 
@@ -22,6 +22,10 @@ class User < ApplicationRecord
       unless parsed.full_valid?
           errors.add(:base, :invalid_postcode)
       end
+  end
+
+  def postcode=(str)
+    super UKPostcode.parse(str).to_s
   end
 
   def display_name

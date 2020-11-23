@@ -1,9 +1,11 @@
-<% if current_user %>
-    <nav class="app-navigation">
-        <ul class="container">
-            <%= render "shared/nav_link", link_text: "Planner", link_path: root_path, image_path: "planner" %>
-            <%= render "shared/nav_link", link_text: "Explore tasks", link_path: tasks_path, image_path: "tasks" %>
-            <%= render "shared/nav_link", link_text: "Profile", link_path: profile_path, image_path: "profile" %>
-        </ul>
-    </nav>
+<% unless controller_path === "onboardings"%>
+    <% if current_user %>
+        <nav class="app-navigation">
+            <ul class="container">
+                <%= render "shared/nav_link", link_text: "Planner", link_path: root_path, image_path: "planner" %>
+                <%= render "shared/nav_link", link_text: "Explore tasks", link_path: tasks_path, image_path: "tasks" %>
+                <%= render "shared/nav_link", link_text: "Profile", link_path: profile_path, image_path: "profile" %>
+            </ul>
+        </nav>
+    <% end %>
 <% end %>

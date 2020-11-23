@@ -38,7 +38,7 @@ en:
         user:
           attributes:
             base:
-              invalid_postcode: "Make sure you give a valid postcode, with a space in the middle."
+              invalid_postcode: "Make sure you give a valid postcode"
 
     models:
       auth_session:
