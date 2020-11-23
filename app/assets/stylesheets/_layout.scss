@@ -16,14 +16,11 @@
 
 .app-layout{
     height: 100vh;
+    height: calc(100vh - var(--vh-offset, 0px));
     display: flex;
     flex-direction: column;
-    min-height: -webkit-fill-available;
 }
 
-html {
-    height: -webkit-fill-available;
-}
 
 .app-header{
     padding: 15px 3vw;

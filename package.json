@@ -5,7 +5,8 @@
     "@rails/ujs": "^6.0.3-4",
     "@rails/webpacker": "5.2.1",
     "leaflet": "^1.7.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "vh-check": "^2.0.5"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
