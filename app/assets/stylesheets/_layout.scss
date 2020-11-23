@@ -52,8 +52,14 @@
 
 .app-wrapper{
     flex: 1;
-    padding: 0px 3vw 15px 3vw;
+    padding: 0px 3vw;
     overflow-y: scroll;
+}
+
+.app-scrollable{
+    position: relative;
+    padding-bottom: 15px;
+    min-height: 100%;
     *:first-child{
         margin-top: 0px;
     }
@@ -77,4 +83,8 @@
         outline: 3px solid $yellow;
         background: $yellow;
     }
+}
+
+.no-top-margin{
+    margin-top: 0;
 }
