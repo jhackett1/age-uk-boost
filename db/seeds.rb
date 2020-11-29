@@ -4,11 +4,11 @@ Task.delete_all
 User.delete_all
 
 User.create({
-    first_name: "Jaye",
-    last_name: "Hackett",
+    first_name: "Admin",
+    last_name: "User",
     phone: ENV["ADMIN_PHONE"],
-    address: "459 Bordesley Green East",
-    postcode: "B33 8PP",
+    address: "BBC Broadcasting House, Portland Place, London",
+    postcode: "W1A 1AA",
     admin: true
 })
 
