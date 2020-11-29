@@ -14,6 +14,7 @@ An app to connect Age UK volunteers to people in need, without accidentally expo
 
 ---
 
+This app was created to help an Age UK branch run their home food delivery service during the coronavirus pandemic.
 
 It offers out tasks, which volunteers can then claim and add to their planner.
 
