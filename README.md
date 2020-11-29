@@ -4,7 +4,7 @@ An app to connect Age UK volunteers to people in need, without accidentally expo
 
 <p align="center">
     <a href="https://outpost-staging.herokuapp.com/">
-        <img src="https://github.com/jhackett1.age-uk/blob/public/demo.png?raw=true" width="350px" />               
+        <img src="https://github.com/jhackett1/age-uk/blob/public/demo.png?raw=true" width="550px" />               
     </a>
 </p>
   
@@ -55,7 +55,7 @@ When developing locally, SMS messages will be logged to the console instead of b
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](
 https://heroku.com/deploy)
 
-It's suitable for 12-factor app hosting like [Heroku](http://heroku.com).
+It's suitable for 12-factor app hosting like [Heroku](http://heroku.com). It's a tiny app, so a $7/month hobby dyno is plenty.
 
 It has a `Procfile` that will [automatically run](https://devcenter.heroku.com/articles/release-phase) pending rails migrations on every deploy, to reduce downtime.
 
