@@ -70,7 +70,7 @@ It has a `Procfile` that will [automatically run](https://devcenter.heroku.com/a
 
 ## ⏰ Scheduled tasks
 
-You can run `rails notify_about_new_tasks` on a schedule of your choosing to notify users by SMS about tasks offered in the last day, if they've said they want to recieve those notifications in their profile.
+You can run `rails notify:about_new_tasks` on a schedule of your choosing to notify users by SMS about tasks offered in the last day, if they've said they want to recieve those notifications in their profile.
 
 You could use [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler) or similar for this.
 
