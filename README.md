@@ -2,6 +2,10 @@
 
 An app to connect Age UK volunteers to people in need, without accidentally exposing unnecessary personal data.
 
+**Want to use this app? [Get in touch with me](twitter.com/dinosaurenby/), I'd be happy to help**
+
+---
+
 <p align="center">
     <a href="https://outpost-staging.herokuapp.com/">
         <img src="https://github.com/jhackett1/age-uk/raw/master/public/demo.jpg?raw=true" width="650px" />               
