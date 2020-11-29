@@ -32,7 +32,7 @@ It's a Rails application backed by a PostgreSQL database.
 
 It has a built-in admin dashboard accessible to authorised users, powered by [Administrate](https://github.com/thoughtbot/administrate).
 
-It uses [Twilio](https://www.twilio.com/) to send SMS messages, including to verify the phone number of users.
+It uses [Twilio](https://www.twilio.com/) to send SMS messages, including to send one-time login codes
 
 It uses [Nominatim](https://nominatim.openstreetmap.org/ui/search.html)'s free geocoding service to convert postcodes into longitude and latitude data. Beware that Nominatim has an [acceptable use policy](https://operations.osmfoundation.org/policies/nominatim/).
 
