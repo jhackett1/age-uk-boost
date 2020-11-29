@@ -92,3 +92,5 @@ To do:
 2. make a background job to remind users about _due_ tasks too
 
 3. write google sheet import script and blank template
+
+4. Limit the number of open tasks a volunteer can claim at once
