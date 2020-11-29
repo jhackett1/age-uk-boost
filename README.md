@@ -2,9 +2,21 @@
 
 An app to connect Age UK volunteers to people in need, without accidentally exposing unnecessary personal data.
 
+<p align="center">
+    <a href="https://outpost-staging.herokuapp.com/">
+        <img src="https://github.com/jhackett1.age-uk/blob/public/demo.png?raw=true" width="350px" />               
+    </a>
+</p>
+  
+
+---
+
+
 It offers out tasks, which volunteers can then claim and add to their planner.
 
-Users log in by verifying their phone number using a single-use code - this way it's friendly for volunteers who don't often use email, and for coordinators who may already be organising using WhatsApp groups or similar.
+Personal information about the person in need is only revealed once a volunteer has claimed a task. Soon after a task is marked as done, it will disappear from the volunteer's planner.
+
+Users log in by **verifying their phone number** using a single-use code - this way it's friendly for volunteers who don't often use email, and for coordinators who may already be organising using WhatsApp groups or similar.
 
 It can work standalone, but works best when tasks are sources from an existing tool, like a Google Sheet or existing CRM.
 
