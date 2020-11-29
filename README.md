@@ -7,13 +7,8 @@ An app to connect Age UK volunteers to people in need, without accidentally expo
 ---
 
 <p align="center">
-    <a href="https://github.com/jhackett1/age-uk">
-        <img src="https://github.com/jhackett1/age-uk/raw/master/public/demo.jpg?raw=true" width="650px" />               
-    </a>
-</p>
-  
-<p align="center">
-    <em>Examples of the "explore tasks" feature</em>         
+   <img src="https://github.com/jhackett1/age-uk/raw/master/public/demo.jpg?raw=true" width="650px" />               
+   <em>Examples of the "explore tasks" feature</em>         
 </p>
 
 ---
