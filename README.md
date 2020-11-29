@@ -70,12 +70,12 @@ You could use [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler
 
 ## 🧬 Configuration
 
-- `HOST`, the current publicly-accessible URL of the website, used in some SMS notifications
-
-- `ADMIN_PHONE`, for the demo admin user when seeding the database. Only needed when seeding a fresh database.
-
-- `TWILIO_SID` and `TWILIO_AUTH_TOKEN` can be gained from the [Twilio console](https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them). Only needed in production.
-- `TWILIO_FROM_NUMBER` should be a valid phone number you've claimed on the Twilio console, in the `E.164` format.
+| Variable                               | Why?                                                                                                                                                           |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HOST`                                 | The current publicly-accessible URL of the website, used in some SMS notifications                                                                             |
+| `ADMIN_PHONE`                          | For the demo admin user when seeding the database. Only needed when seeding a fresh database.                                                                  |
+| `TWILIO_SID`  and  `TWILIO_AUTH_TOKEN` | Can be gained from the [Twilio console](https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them). Only needed in production. |
+| `TWILIO_FROM_NUMBER`                   | Should be a valid phone number you've claimed on the Twilio console, in the E.164 format.                                                                      |
 
 You can provide environment config locally using a [`.env` file](https://github.com/bkeepers/dotenv).
 
