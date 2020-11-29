@@ -48,6 +48,8 @@ rails db:setup
 rails s
 ```
 
+It'll be on localhost:3000.
+
 It will populate the database with some fake demo tasks and an admin user.
 
 Make sure you provide the `ADMIN_PHONE` environment variable before running `rails db:setup`.
