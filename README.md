@@ -2,7 +2,7 @@
 
 An app to connect Age UK volunteers to people in need, without accidentally exposing unnecessary personal data.
 
-**Need help setting this app up? [Get in touch with me](twitter.com/dinosaurenby/)**
+**Need help setting this app up? [Get in touch with me!](twitter.com/dinosaurenby/)**
 
 ---
 
