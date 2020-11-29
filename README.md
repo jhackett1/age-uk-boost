@@ -31,7 +31,7 @@ It has a built-in admin dashboard accessible to authorised users, powered by [Ad
 
 It uses [Twilio](https://www.twilio.com/) to send SMS messages, including to verify the phone number of users.
 
-It uses [Nominatim](https://nominatim.openstreetmap.org/ui/search.html)'s free geocoding service to convert postcodes into longitude and latitude data.
+It uses [Nominatim](https://nominatim.openstreetmap.org/ui/search.html)'s free geocoding service to convert postcodes into longitude and latitude data. Beware that Nominatim has an [acceptable use policy](https://operations.osmfoundation.org/policies/nominatim/).
 
 ## 💻 Running it locally
 
@@ -48,7 +48,7 @@ rails s
 
 It will populate the database with some fake demo tasks and an admin user.
 
-Make sure you provide the `ADMIN_PHONE` variable before running `rails db:setup`.
+Make sure you provide the `ADMIN_PHONE` environment variable before running `rails db:setup`.
 
 When developing locally, SMS messages will be logged to the console instead of being sent using Twilio.
 
@@ -77,7 +77,7 @@ You could use [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler
 - `TWILIO_SID` and `TWILIO_AUTH_TOKEN` can be gained from the [Twilio console](https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them). Only needed in production.
 - `TWILIO_FROM_NUMBER` should be a valid phone number you've claimed on the Twilio console, in the `E.164` format.
 
-You can provide environment config locally using a `.env` file.
+You can provide environment config locally using a [`.env` file](https://github.com/bkeepers/dotenv).
 
 ## 🧪 Roadmap
 
