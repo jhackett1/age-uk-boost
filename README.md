@@ -1,4 +1,4 @@
-# 📡 Age UK Signal
+# 📡 Age UK Boost
 
 An app to connect Age UK volunteers to people in need, without accidentally exposing unnecessary personal data.
 
@@ -22,6 +22,8 @@ Personal information about the person in need is only revealed once a volunteer 
 Users log in by **verifying their phone number** using a single-use code - this way it's friendly for volunteers who don't often use email, and for coordinators who may already be organising using WhatsApp groups or similar.
 
 It can work standalone, but works best when tasks are sources from an existing tool, like a Google Sheet or existing CRM.
+
+Here are some [user stories and journeys](https://docs.google.com/presentation/d/e/2PACX-1vT-i_rTxszidM1OKbcOfKe8DoMuGqMiezM2e8CqGwtutLHiRv5cATqwVLxgxYRz0SFHTfR86yLYMwmM/pub?start=false&loop=false&delayms=3000) the app forms a part of.
 
 ## 🧱 How it's made
 
